@@ -1,6 +1,6 @@
 {
   "name": "@erp-rc/components",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "description": "@erp-rc/components",
   "main": "lib/index.js",
   "module": "es/index.js",
