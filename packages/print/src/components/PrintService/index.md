@@ -1,9 +1,11 @@
 ---
 order: 0
-atomId: Print
+atomId: PrintService
 title: Print 打印
 group:
   title: 工具
+apiHeader:
+  pkg: '@erp-rc/print'
 ---
 
 ## 代码演示

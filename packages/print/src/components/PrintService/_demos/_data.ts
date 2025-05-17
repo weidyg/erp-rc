@@ -11,16 +11,6 @@ const jingdongDoc: JingdongPrintDocument[] = [
             "count": 2
         }
     },
-    {
-        "documentID": "2",
-        "tempUrl": "https://template-content.jd.com/template-oss?tempCode=jdkd76x130",
-        "printData": "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",//通过pullData接口获取打印数据
-        "customTempUrl": "https://template-content.jd.com/template-open?templateCode=jd1112qcc",
-        "customData": {
-            "productName": "iPhone 16 Pro Max 1T版",
-            "count": 2
-        }
-    }
 ]
 const cianiaoDoc: CianiaoPrintDocument[] = [
     {
@@ -158,8 +148,7 @@ const kuaishouDoc: KuaishouPrintDocument[] = [
                 "value": "测试字段值需要配合自定义区变量名"
             },
             "templateURL": "https://s2-11586.kwimgs.com/kos/nlav11586/template/custom/EBCT-EBCTO20.xml"   // 这个是自定义的模板链接
-        }
-        ]
+        }]
     }
 ]
 

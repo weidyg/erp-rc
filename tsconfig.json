@@ -15,6 +15,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@@/*": [".dumi/tmp/*"],
+      "@erp-rc/components": ["./packages/components/src/index.tsx"],
       "@erp-rc/print": ["./packages/print/src/index.tsx"],
     }
   },

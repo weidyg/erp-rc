@@ -27,3 +27,18 @@ or using pnpm:
  pnpm add @erp-rc/components
 ```
 
+## 在项目中使用
+
+每一个包都是一个独立的组件包，使用示例如下 ：
+
+<!-- | pure -->
+
+```jsx | pure
+import { prinClientInfos, PrintService } from "@erp-rc/print";
+
+export default () => {
+  const printService = new PrintService();
+  
+  return <></>;
+};
+```

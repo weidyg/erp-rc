@@ -46,7 +46,7 @@ const config: IDumiConfig = {
   themeConfig: {
     name: 'React组件',
     logo: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
-    github: `https://github.com/weidyg/erp-rc`,
+    github: `https://github.com/weidyg/${projectName}`,
     nav: {
       'zh-CN': [
         { title: '文档', link: '/docs' },
