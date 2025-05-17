@@ -42,7 +42,6 @@ class PrintService {
         }
         return socket;
     }
-
     private connect(type: PrintClientType, onopen: (ev: Event) => void) {
         const { name, wsUrl } = prinClientInfos[type] || {};
         const socket = new WebSocket(wsUrl);
@@ -96,7 +95,6 @@ class PrintService {
         };
         return socket;
     }
-
     private getPrintersRequest(type: PrintClientType, requestID: string) {
         switch (type) {
             case 'jingdong': {
@@ -116,7 +114,6 @@ class PrintService {
             }
         }
     }
-
     private getPrintRequest(type: PrintClientType, requestID: string, params: PrintParams) {
         const { printer, preview = false, previewType, documents: _documents = [] } = params || {};
         const documents: any[] = [];
@@ -159,7 +156,6 @@ class PrintService {
                 return request;
         }
     }
-
     private registerEventBus_getPrinters(requestID: string, params: GetPrintersParams) {
         const { type, onSuccess, onError } = params || {};
         let errorFun = (rawData: EventData): void => {
