@@ -8,8 +8,8 @@ export const prinClientInfos: Record<PrintClientType, { name: string; wsUrl: str
     ['kuaishou']: { name: ' 快手', wsUrl: 'ws://localhost:16888/ks/printer', wssUrl: 'wss://localhost:16889/ks/printer' },
     ['jingdong']: { name: '京东', wsUrl: 'ws://localhost:9113', wssUrl: '' },
 };
-
-export class PrintService {
+ 
+class PrintService {
     private _sockets: { [key: string]: WebSocket | undefined } = {};
     private _eventBus: EventBus;
     constructor() {
@@ -363,3 +363,5 @@ export class PrintService {
         return uuid.join('');
     }
 }
+
+export const printService = new PrintService();

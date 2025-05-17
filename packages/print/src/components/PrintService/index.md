@@ -1,6 +1,6 @@
 ---
 order: 0
-atomId: PrintService
+atomId: printService
 title: Print 打印
 group:
   title: 工具
@@ -18,8 +18,7 @@ apiHeader:
 ```html
 <script src="/js/print.min.js"></script>
 <script type="text/javascript">
-  const { prinClientInfos, PrintService }= erpRcPrint;
-  const printService = new PrintService();
+  const { prinClientInfos, printService }= erpRcPrint;
   
   function getPrinters() {
     printService.getPrinters({

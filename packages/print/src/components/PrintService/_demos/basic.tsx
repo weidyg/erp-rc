@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Button, message, notification, Segmented, Select, Space } from "antd";
-import { prinClientInfos, PrintService } from "@erp-rc/print";
+import { prinClientInfos, printService } from "@erp-rc/print";
 import { PrintClientType, PrintDocStatus, PrintError, PrintStatus, } from "@erp-rc/print";
 import { cianiaoDoc, doudianDoc, jingdongDoc, kuaishouDoc, pinduoduoDoc } from "./_data";
 
@@ -10,7 +10,6 @@ export default () => {
     const [printer, setPrinter] = useState<string>();
     const [messageApi, contextHolder] = message.useMessage();
     const [printMsgs, setPrintMsgs] = useState<any[]>([]);
-    const printService = useMemo(() => new PrintService(), []);
 
     const prinClients = useMemo(() => {
         return Object.keys(prinClientInfos).map((key) => {
