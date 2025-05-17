@@ -8,7 +8,8 @@ export default () => {
     const [prinClientType, setPrinClientType] = useState<PrintClientType>('cainiao');
     const [printerOptions, setPrinterOptions] = useState<string[]>([]);
     const [printer, setPrinter] = useState<string>();
-    const [messageApi, contextHolder] = message.useMessage();
+    const [messageApi, messageHolder] = message.useMessage();
+    const [notificationApi, notificationHolder] = notification.useNotification();
     const [printMsgs, setPrintMsgs] = useState<any[]>([]);
 
     const prinClients = useMemo(() => {
@@ -24,14 +25,14 @@ export default () => {
             onSuccess: ({ defaultPrinter, printers }, rawData) => {
                 setPrinterOptions(printers);
                 if (defaultPrinter) { setPrinter(defaultPrinter); }
-                notification.success({
+                notificationApi.success({
                     message: <div>打印机列表：<pre>{JSON.stringify(printers, null, 2)}</pre></div>,
                     description: <div>原始数据：<pre>{JSON.stringify(rawData, null, 2)}</pre></div>
                 })
             },
             onError: (data, rawData) => {
                 setPrinterOptions([]);
-                notification.error({
+                notificationApi.error({
                     message: <div>错误：<pre>{JSON.stringify(data, null, 2)}</pre></div>,
                     description: <div>原始数据：<pre>{JSON.stringify(rawData, null, 2)}</pre></div>
                 })
@@ -77,7 +78,8 @@ export default () => {
 
 
     return (<div style={{ padding: '20px' }}>
-        {contextHolder}
+        {messageHolder}
+        {notificationHolder}
         <Space direction="vertical">
             <Segmented<PrintClientType>
                 value={prinClientType}
