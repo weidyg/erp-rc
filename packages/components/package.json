@@ -35,7 +35,7 @@
     "react": ">=18.0.0"
   },
   "dependencies": {
-    "@erp-rc/components": "1.0.0-beta.1",
-    "@erp-rc/print": "1.0.0-beta.1"
+    "@erp-rc/components": "1.0.0",
+    "@erp-rc/print": "1.0.0"
   }
 }
