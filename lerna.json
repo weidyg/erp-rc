@@ -1,0 +1,17 @@
+{
+  "version": "independent",
+  "npmClient": "pnpm",
+  "ignoreChanges": [
+    "**/*.md",
+    "**/*.test.ts",
+    "**/*.e2e.ts",
+    "**/demos/**",
+    "**/_demos/**",
+    "**/fixtures/**",
+    "**/dist/**",
+    "**/lib/**",
+    "**/es/**",
+    "**/test/**"
+  ],
+  "packages": ["packages/*"]
+}

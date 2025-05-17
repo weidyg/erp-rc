@@ -1,0 +1,41 @@
+{
+  "name": "@erp-rc/components",
+  "version": "1.0.0-beta.1",
+  "description": "@erp-rc/components",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "build": "father build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weidyg/erp-rc"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "keywords": [],
+  "authors": [
+    "weidyg <weidyg@163.com> (https://github.com/weidyg)"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "dependencies": {
+    "@erp-rc/components": "1.0.0-beta.1",
+    "@erp-rc/print": "1.0.0-beta.1"
+  }
+}
