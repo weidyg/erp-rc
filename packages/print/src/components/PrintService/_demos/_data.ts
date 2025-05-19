@@ -1,4 +1,4 @@
-import { CianiaoPrintDocument, DoudianPrintDocument, JingdongPrintDocument, KuaishouPrintDocument, PinduoduoPrintDocument } from "@erp-rc/print"
+import {  CainiaoPrintDocument, DoudianPrintDocument, JingdongPrintDocument, KuaishouPrintDocument, PinduoduoPrintDocument } from "@erp-rc/print"
 
 const jingdongDoc: JingdongPrintDocument[] = [
     {
@@ -13,7 +13,7 @@ const jingdongDoc: JingdongPrintDocument[] = [
         }
     },
 ]
-const cianiaoDoc: CianiaoPrintDocument[] = [
+const cianiaoDoc: CainiaoPrintDocument[] = [
     {
         "documentID": "111111111",
         "copy": 2,//打印两份，默认1份                         

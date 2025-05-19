@@ -3,6 +3,7 @@ import { Button, message, notification, Segmented, Select, Space, Timeline, Time
 import { prinClientInfos, printService } from "@erp-rc/print";
 import { PrintClientType, PrintDocStatus, PrintError, PrintStatus, } from "@erp-rc/print";
 import { cianiaoDoc, doudianDoc, jingdongDoc, kuaishouDoc, pinduoduoDoc } from "./_data";
+import data1 from './_data1.json';
 
 export default () => {
     const [prinClientType, setPrinClientType] = useState<PrintClientType>('cainiao');
@@ -20,12 +21,14 @@ export default () => {
     }, []);
 
     function getDocs() {
-        const docs = prinClientType === 'jingdong' ? jingdongDoc
-            : prinClientType === 'cainiao' ? cianiaoDoc
-                : prinClientType === 'doudian' ? doudianDoc
-                    : prinClientType === 'pinduoduo' ? pinduoduoDoc
-                        : prinClientType === 'kuaishou' ? kuaishouDoc
-                            : [];
+        const docs: any = data1.find(f => f.type === prinClientType);
+        docs.isWaybill = true;
+        // const docs = prinClientType === 'jingdong' ? jingdongDoc
+        //     : prinClientType === 'cainiao' ? cianiaoDoc
+        //         : prinClientType === 'doudian' ? doudianDoc
+        //             : prinClientType === 'pinduoduo' ? pinduoduoDoc
+        //                 : prinClientType === 'kuaishou' ? kuaishouDoc
+        //                     : [];
         return docs;
     }
 
@@ -50,16 +53,14 @@ export default () => {
         });
     }
 
-    function print(type: PrintClientType, documents: any[], preview?: boolean) {
+    function print(data: { type: PrintClientType, documents: any[] }) {
         const key = printService.getUuid(8, 16);
         messageApi.loading({ key, content: '打印中..', duration: 0, });
         setPrintMsgs([]);
         printService.doPrint({
-            type: type,
             requestID: key,
             printer: printer!,
-            documents: documents,
-            preview: preview,
+            ...data,
             onPrint: function (data: PrintStatus, rawData: any) {
                 console.log('onPrint', data, rawData);
                 setPrintMsgs(prev => [...prev, { children: <>onPrint<pre>{JSON.stringify(data, null, 2)}</pre></> }]);
@@ -115,9 +116,7 @@ export default () => {
 
             <Button onClick={async () => {
                 const docs = getDocs();
-                if (docs.length > 0) {
-                    print(prinClientType, docs);
-                }
+                if (docs) { print(docs); }
             }}>
                 打印
             </Button>
