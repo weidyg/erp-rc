@@ -19,6 +19,16 @@ export default () => {
         });
     }, []);
 
+    function getDocs() {
+        const docs = prinClientType === 'jingdong' ? jingdongDoc
+            : prinClientType === 'cainiao' ? cianiaoDoc
+                : prinClientType === 'doudian' ? doudianDoc
+                    : prinClientType === 'pinduoduo' ? pinduoduoDoc
+                        : prinClientType === 'kuaishou' ? kuaishouDoc
+                            : [];
+        return docs;
+    }
+
     function getPrinters(type: PrintClientType) {
         printService.getPrinters({
             type: type,
@@ -40,7 +50,8 @@ export default () => {
         });
     }
 
-    function print(key: string, type: PrintClientType, documents: any[]) {
+    function print(type: PrintClientType, documents: any[], preview?: boolean) {
+        const key = printService.getUuid(8, 16);
         messageApi.loading({ key, content: '打印中..', duration: 0, });
         setPrintMsgs([]);
         printService.doPrint({
@@ -48,8 +59,8 @@ export default () => {
             requestID: key,
             printer: printer!,
             documents: documents,
+            preview: preview,
             onPrint: function (data: PrintStatus, rawData: any) {
-                console.log('onPrint', data);
                 setPrintMsgs(prev => [...prev, { onPrint: data }]);
                 if (data.status === 'failed') {
                     messageApi.error({ key, content: '打印失败', duration: 0, });
@@ -97,24 +108,28 @@ export default () => {
                 <Select style={{ width: '200px' }} allowClear placeholder="请选择打印机"
                     options={printerOptions.map(item => ({ label: item, value: item }))}
                     value={printer}
-                    onChange={(value) => { setPrinter(value); }}
+                    onChange={(value: any) => { setPrinter(value); }}
                 />
             </Space>
 
             <Button onClick={async () => {
-                const docs = prinClientType === 'jingdong' ? jingdongDoc
-                    : prinClientType === 'cainiao' ? cianiaoDoc
-                        : prinClientType === 'doudian' ? doudianDoc
-                            : prinClientType === 'pinduoduo' ? pinduoduoDoc
-                                : prinClientType === 'kuaishou' ? kuaishouDoc
-                                    : [];
+                const docs = getDocs();
                 if (docs.length > 0) {
-                    const key = printService.getUuid(8, 16);
-                    print(key, prinClientType, docs);
+                    print(prinClientType, docs);
                 }
             }}>
                 打印
             </Button>
+
+            <Button onClick={async () => {
+                const docs = getDocs();
+                if (docs.length > 0) {
+                    print(prinClientType, docs, true);
+                }
+            }}>
+                预览
+            </Button>
+
         </Space>
         <div style={{ maxHeight: '500px', overflow: 'auto' }}>
             <pre>

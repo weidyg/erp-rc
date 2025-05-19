@@ -425,4 +425,5 @@ export type NotifyPrintResultStatus = {
 export type PrintDocument = {
     documentID: string;
     copy?: number;//2:打印两份，默认1份     
+    contents?:any;
 }

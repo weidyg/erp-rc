@@ -8,7 +8,7 @@ export const prinClientInfos: Record<PrintClientType, { name: string; wsUrl: str
     ['kuaishou']: { name: ' 快手', wsUrl: 'ws://localhost:16888/ks/printer', wssUrl: 'wss://localhost:16889/ks/printer' },
     ['jingdong']: { name: '京东', wsUrl: 'ws://localhost:9113', wssUrl: '' },
 };
- 
+
 class PrintService {
     private _sockets: { [key: string]: WebSocket | undefined } = {};
     private _eventBus: EventBus;
@@ -23,8 +23,12 @@ class PrintService {
         this.send(type, request);
     }
     public doPrint(params: PrintParams) {
-        const { type, requestID } = params || {};
+        const { type, requestID, preview, onError } = params || {};
         const _requestID = requestID || this.getUuid(8, 16);
+        if (preview) {
+            onError?.({ requestID: _requestID, msg: '暂不支持预览功能！' }, {});
+            return;
+        }
         this.registerEventBus_print(_requestID, params);
         const request = this.getPrintRequest(type, _requestID, params);
         this.send(type, request);
@@ -132,7 +136,7 @@ class PrintService {
                 const request: JingdongPrintRequest = {
                     key: requestID,
                     version: "2",
-                    orderType: preview ? "PRE_View" : "PRINT",
+                    orderType: preview ? "PRE_View:multi" : "PRINT",
                     parameters: {
                         printName: printer,
                         contents: documents
@@ -147,8 +151,8 @@ class PrintService {
                     requestID: requestID,
                     task: {
                         taskID: requestID,
-                        preview: preview,
                         printer: printer,
+                        preview: preview,
                         previewType: previewType,
                         documents: documents
                     }
@@ -227,10 +231,17 @@ class PrintService {
                         break;
                     default:
                         {
-                            const _data = rawData as unknown as PrintResponse;
-                            const { status, msg } = _data || {};
-                            const data: PrintStatus = { status, msg, requestID, };
-                            onPrint?.(data, rawData);
+                            if (type === 'cainiao' && rawData?.status === 'success') {
+                                if (rawData.previewURL || rawData.previewImage) {
+                                    //TODO: 预览
+                                    offEventBus();
+                                }
+                            } else {
+                                const _data = rawData as unknown as PrintResponse;
+                                const { status, msg } = _data || {};
+                                const data: PrintStatus = { status, msg, requestID, };
+                                onPrint?.(data, rawData);
+                            }
                         }
                         break;
                 }

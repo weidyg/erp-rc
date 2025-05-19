@@ -15,14 +15,14 @@ apiHeader:
 
 
 ### 浏览器直接引入
-```html
+``` html | pure
 <script src="/js/print.min.js"></script>
 <script type="text/javascript">
   const { prinClientInfos, printService }= erpRcPrint;
   
   function getPrinters() {
     printService.getPrinters({
-      type:...,// 打印类型 prinClientInfos 的 key
+      type:"cainiao",
       onSuccess: function ({ defaultPrinter, printers }, rawData) {
         console.log("getPrinters onSuccess", printers, rawData);
         },
@@ -34,9 +34,9 @@ apiHeader:
   
   function doPrint() {
     printService.doPrint({
-      type:...,// 打印类型 prinClientInfos 的 key
-      documents:[...], // 打印文档
-      printer: '...', // 打印机名称
+      type:"cainiao",
+      documents:[], // 打印文档
+      printer: '', // 打印机名称
       onPrint: function (data, rawData) {
         console.log("onPrint", data, rawData);
       },
