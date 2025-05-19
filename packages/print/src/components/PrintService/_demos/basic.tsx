@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Button, message, notification, Segmented, Select, Space } from "antd";
+import { Button, message, notification, Segmented, Select, Space, Timeline, TimelineItemProps } from "antd";
 import { prinClientInfos, printService } from "@erp-rc/print";
 import { PrintClientType, PrintDocStatus, PrintError, PrintStatus, } from "@erp-rc/print";
 import { cianiaoDoc, doudianDoc, jingdongDoc, kuaishouDoc, pinduoduoDoc } from "./_data";
@@ -10,7 +10,7 @@ export default () => {
     const [printer, setPrinter] = useState<string>();
     const [messageApi, messageHolder] = message.useMessage();
     const [notificationApi, notificationHolder] = notification.useNotification();
-    const [printMsgs, setPrintMsgs] = useState<any[]>([]);
+    const [printMsgs, setPrintMsgs] = useState<TimelineItemProps[]>([]);
 
     const prinClients = useMemo(() => {
         return Object.keys(prinClientInfos).map((key) => {
@@ -61,7 +61,8 @@ export default () => {
             documents: documents,
             preview: preview,
             onPrint: function (data: PrintStatus, rawData: any) {
-                setPrintMsgs(prev => [...prev, { onPrint: data }]);
+                console.log('onPrint', data, rawData);
+                setPrintMsgs(prev => [...prev, { children: <>onPrint<pre>{JSON.stringify(data, null, 2)}</pre></> }]);
                 if (data.status === 'failed') {
                     messageApi.error({ key, content: '打印失败', duration: 0, });
                     setTimeout(messageApi.destroy, 2500);
@@ -69,18 +70,18 @@ export default () => {
             },
             onRendered: function (data: PrintDocStatus[], rawData: any) {
                 console.log('onRendered', data, rawData);
-                setPrintMsgs(prev => [...prev, { onRendered: data }]);
+                setPrintMsgs(prev => [...prev, { children: <>onRendered<pre>{JSON.stringify(data, null, 2)}</pre></> }]);
                 messageApi.loading({ key, content: '渲染完成', duration: 0, });
             },
             onPrinted: function (data: PrintDocStatus[], rawData: any) {
                 console.log('onPrinted', data, rawData);
-                setPrintMsgs(prev => [...prev, { onPrinted: data }]);
+                setPrintMsgs(prev => [...prev, { children: <>onPrinted <pre>{JSON.stringify(data, null, 2)}</pre> </> }]);
                 messageApi.success({ key, content: '打印完成', duration: 0, });
                 setTimeout(messageApi.destroy, 2500);
             },
             onError: (data: PrintError, rawData: any) => {
                 console.log('onError', data, rawData);
-                setPrintMsgs(prev => [...prev, { onError: data }]);
+                setPrintMsgs(prev => [...prev, { children: <>onError <pre>{JSON.stringify(data, null, 2)}</pre></> }]);
                 messageApi.error({ key, content: '打印错误', duration: 0, });
                 setTimeout(messageApi.destroy, 2500);
             },
@@ -120,21 +121,9 @@ export default () => {
             }}>
                 打印
             </Button>
-
-            <Button onClick={async () => {
-                const docs = getDocs();
-                if (docs.length > 0) {
-                    print(prinClientType, docs, true);
-                }
-            }}>
-                预览
-            </Button>
-
         </Space>
-        <div style={{ maxHeight: '500px', overflow: 'auto' }}>
-            <pre>
-                {printMsgs?.length > 0 && JSON.stringify(printMsgs, null, 2)}
-            </pre>
-        </div>
+        <br />
+        <br />
+        <Timeline items={printMsgs} mode='left' />
     </div >);
 };

@@ -231,11 +231,10 @@ class PrintService {
                         break;
                     default:
                         {
-                            if (type === 'cainiao' && rawData?.status === 'success') {
-                                if (rawData.previewURL || rawData.previewImage) {
-                                    //TODO: 预览
-                                    offEventBus();
-                                }
+                            if (type === 'cainiao' && rawData?.status === 'success' &&
+                                (rawData?.previewURL || rawData?.previewImage)) {
+                                //TODO: 预览
+                                offEventBus();
                             } else {
                                 const _data = rawData as unknown as PrintResponse;
                                 const { status, msg } = _data || {};
