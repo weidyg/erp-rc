@@ -124,9 +124,9 @@ class PrintService {
         }
     }
     private getPrintRequest(type: PrintClientType, requestID: string, params: PrintParams) {
-        const { printer, preview = false, previewType, isWaybill = false, documents: _documents = [] } = params || {};
-        let documents = isWaybill ? this.toClientDocuments(type, _documents) : _documents;
-        documents = this.copyDocuments(documents);
+        const { printer, preview = false, previewType, documents: _documents = [] } = params || {};
+        const clientDocuments = this.toClientDocuments(type, _documents);
+        const documents = this.copyDocuments(clientDocuments) as any[];
         switch (type) {
             case 'jingdong': {
                 const request: JingdongPrintRequest = {
@@ -135,7 +135,7 @@ class PrintService {
                     orderType: preview ? "PRE_View:multi" : "PRINT",
                     parameters: {
                         printName: printer,
-                        contents: documents as any
+                        contents: documents
                     }
                 };
                 return request;
@@ -170,26 +170,30 @@ class PrintService {
         });
         return _documents;
     }
-    private toClientDocuments(type: PrintClientType, documents: WaybillDocument[]) {
+    public toClientDocuments(type: PrintClientType, documents: WaybillDocument[]) {
         switch (type) {
             case 'jingdong': {
                 const _documents: JingdongPrintDocument[] = [];
                 for (const doc of documents) {
-                    const { documentID, copy, sender, standardArea: standard, customArea: custom } = doc;
-                    let jdPrintData = standard?.encryptedData;
+                    if (!this.isWaybillDocument(doc)) {
+                        _documents.push(doc as any);
+                        continue;
+                    }
+                    const { documentID, copy, sender, standardArea, customArea } = doc;
+                    let jdPrintData = standardArea?.encryptedData;
                     let jdDataType = undefined;
                     if (!jdPrintData || jdPrintData.trim() === '') {
                         jdDataType = 'app';
-                        jdPrintData = JSON.stringify(standard?.data);
+                        jdPrintData = JSON.stringify(standardArea?.data);
                     }
                     const content: JingdongPrintDocument = {
                         documentID: documentID,
                         copy: copy,
-                        tempUrl: standard?.templateURL!,
+                        tempUrl: standardArea?.templateURL!,
                         printData: jdPrintData,
-                        addData: standard?.addData,
-                        customTempUrl: custom?.templateURL,
-                        customData: custom?.data,
+                        addData: standardArea?.addData,
+                        customTempUrl: customArea?.templateURL,
+                        customData: customArea?.data,
                         dataType: jdDataType,
                     };
                     if (sender) {
@@ -197,7 +201,7 @@ class PrintService {
                             name: sender.name,
                             mobile: sender.mobile,
                             phone: sender.phone,
-                            address: `${sender.province??''}${sender.city??''}${sender.district??''}${sender.street??''}${sender.address??''}`,
+                            address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${sender.address ?? ''}`,
                         };
                         content.addData = content.addData || {};
                         content.addData.sender = _sender;
@@ -209,6 +213,10 @@ class PrintService {
             case 'cainiao': {
                 const _documents: CainiaoPrintDocument[] = [];
                 for (const doc of documents) {
+                    if (!this.isWaybillDocument(doc)) {
+                        _documents.push(doc as any);
+                        continue;
+                    }
                     const { documentID, sender, standardArea, customArea, ...rest } = doc;
                     const contents: CainiaoPrintDocument['contents'] = [];
                     if (standardArea) {
@@ -251,6 +259,10 @@ class PrintService {
             case 'doudian': {
                 const _documents: DoudianPrintDocument[] = [];
                 for (const doc of documents) {
+                    if (!this.isWaybillDocument(doc)) {
+                        _documents.push(doc as any);
+                        continue;
+                    }
                     const { documentID, sender, standardArea, customArea, ...rest } = doc;
                     const contents: DoudianPrintDocument['contents'] = [];
                     if (standardArea) {
@@ -295,6 +307,10 @@ class PrintService {
             case 'pinduoduo': {
                 const _documents: PinduoduoPrintDocument[] = [];
                 for (const doc of documents) {
+                    if (!this.isWaybillDocument(doc)) {
+                        _documents.push(doc as any);
+                        continue;
+                    }
                     const { documentID, sender, standardArea, customArea, ...rest } = doc;
                     const contents: PinduoduoPrintDocument['contents'] = [];
                     if (standardArea) {
@@ -337,6 +353,10 @@ class PrintService {
             case 'kuaishou': {
                 const _documents: KuaishouPrintDocument[] = [];
                 for (const doc of documents) {
+                    if (!this.isWaybillDocument(doc)) {
+                        _documents.push(doc as any);
+                        continue;
+                    }
                     const { documentID, sender, standardArea, customArea, ...rest } = doc;
                     const contents: KuaishouPrintDocument['contents'] = [];
                     if (standardArea) {
@@ -379,6 +399,9 @@ class PrintService {
                 return _documents;
             }
         }
+    }
+    private isWaybillDocument(doc: any): boolean {
+        return !!(doc?.standardArea?.templateURL || doc?.customArea?.templateURL);
     }
     private registerEventBus_getPrinters(requestID: string, params: GetPrintersParams) {
         const { type, onSuccess, onError } = params || {};

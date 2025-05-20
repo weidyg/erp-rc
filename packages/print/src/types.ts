@@ -24,6 +24,7 @@ export type PrintDocStatus = PrintStatus & {
 };
 export type PrintParams = {
     type: PrintClientType;
+    documents: (PrintDocument | WaybillDocument)[];
     requestID?: string;
     printer: string;
     preview?: boolean;
@@ -32,13 +33,7 @@ export type PrintParams = {
     onRendered: (data: PrintDocStatus[], rawData: any) => void;
     onPrinted: (data: PrintDocStatus[], rawData: any) => void;
     onError: (data: PrintError, rawData: any) => void;
-} & ({
-    isWaybill?: false;
-    documents: PrintDocument[];
-} | {
-    isWaybill: true;
-    documents: WaybillDocument[];
-});
+};
 
 //https://open.jdl.com/#/open-business-document/access-guide/157/54222
 

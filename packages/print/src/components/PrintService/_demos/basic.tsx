@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Button, message, notification, Segmented, Select, Space, Timeline, TimelineItemProps } from "antd";
+import { Button, Checkbox, message, notification, Segmented, Select, Space, Timeline, TimelineItemProps } from "antd";
 import { prinClientInfos, printService } from "@erp-rc/print";
 import { PrintClientType, PrintDocStatus, PrintError, PrintStatus, } from "@erp-rc/print";
 import { cianiaoDoc, doudianDoc, jingdongDoc, kuaishouDoc, pinduoduoDoc } from "./_data";
@@ -22,7 +22,6 @@ export default () => {
 
     function getDocs() {
         const docs: any = data1.find(f => f.type === prinClientType);
-        docs.isWaybill = true;
         // const docs = prinClientType === 'jingdong' ? jingdongDoc
         //     : prinClientType === 'cainiao' ? cianiaoDoc
         //         : prinClientType === 'doudian' ? doudianDoc
@@ -113,13 +112,19 @@ export default () => {
                     onChange={(value: any) => { setPrinter(value); }}
                 />
             </Space>
-
-            <Button onClick={async () => {
-                const docs = getDocs();
-                if (docs) { print(docs); }
-            }}>
-                打印
-            </Button>
+            <Space>
+                {/* <Checkbox
+                    checked={preview}
+                    onChange={(e) => { setPreview(e.target.checked); }}>
+                    使用通用格式
+                </Checkbox> */}
+                <Button onClick={async () => {
+                    const docs = getDocs();
+                    if (docs) { print(docs as any); }
+                }}>
+                    打印
+                </Button>
+            </Space>
         </Space>
         <br />
         <br />
