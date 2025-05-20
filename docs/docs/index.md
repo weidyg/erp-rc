@@ -15,7 +15,7 @@ nav:
 ```
 
 ```bash [npm]
-npm install --save @erp-rc/components
+npm install @erp-rc/components
 ```
 
 ```bash [yarn]
