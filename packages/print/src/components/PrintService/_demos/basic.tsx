@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
-import { Button, Checkbox, message, notification, Segmented, Select, Space, Timeline, TimelineItemProps } from "antd";
+import { Button, Checkbox, message, notification, Segmented, Select, Space, Timeline, TimelineItemProps, Typography } from "antd";
 import { prinClientInfos, printService } from "@erp-rc/print";
 import { PrintClientType, PrintDocStatus, PrintError, PrintStatus, } from "@erp-rc/print";
-import { cianiaoDoc, doudianDoc, jingdongDoc, kuaishouDoc, pinduoduoDoc } from "./_data";
-import data1 from './_data1.json';
+import dataJson1 from './_data1.json';
+import dataJson from './_data.json';
 
 export default () => {
     const [prinClientType, setPrinClientType] = useState<PrintClientType>('cainiao');
@@ -12,6 +12,7 @@ export default () => {
     const [messageApi, messageHolder] = message.useMessage();
     const [notificationApi, notificationHolder] = notification.useNotification();
     const [printMsgs, setPrintMsgs] = useState<TimelineItemProps[]>([]);
+    const [useCommonFormat, setUseCommonFormat] = useState<boolean>(false);
 
     const prinClients = useMemo(() => {
         return Object.keys(prinClientInfos).map((key) => {
@@ -21,13 +22,9 @@ export default () => {
     }, []);
 
     function getDocs() {
-        const docs: any = data1.find(f => f.type === prinClientType);
-        // const docs = prinClientType === 'jingdong' ? jingdongDoc
-        //     : prinClientType === 'cainiao' ? cianiaoDoc
-        //         : prinClientType === 'doudian' ? doudianDoc
-        //             : prinClientType === 'pinduoduo' ? pinduoduoDoc
-        //                 : prinClientType === 'kuaishou' ? kuaishouDoc
-        //                     : [];
+        const docs: any = useCommonFormat
+            ? dataJson1.find(f => f.type === prinClientType)
+            : dataJson.find((f: any) => f.type === prinClientType);
         return docs;
     }
 
@@ -113,11 +110,11 @@ export default () => {
                 />
             </Space>
             <Space>
-                {/* <Checkbox
-                    checked={preview}
-                    onChange={(e) => { setPreview(e.target.checked); }}>
+                <Checkbox
+                    checked={useCommonFormat}
+                    onChange={(e) => { setUseCommonFormat(e.target.checked); }}>
                     使用通用格式
-                </Checkbox> */}
+                </Checkbox>
                 <Button onClick={async () => {
                     const docs = getDocs();
                     if (docs) { print(docs as any); }
@@ -125,6 +122,17 @@ export default () => {
                     打印
                 </Button>
             </Space>
+            <Typography.Text >
+                <pre>
+                    <Typography.Paragraph ellipsis={{
+                        rows: 2,
+                        expandable: 'collapsible',
+                        symbol: (expanded) => expanded ? '收起' : '展开',
+                    }}>
+                        {JSON.stringify(getDocs(), null, 2)}
+                    </Typography.Paragraph>
+                </pre>
+            </Typography.Text>
         </Space>
         <br />
         <br />
