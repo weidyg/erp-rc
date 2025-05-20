@@ -8,24 +8,22 @@ nav:
 ---
 
 ## 安装
+:::code-group
 
-Using npm:
+```bash [pnpm]
+ pnpm add @erp-rc/components
+```
 
-```bash
+```bash [npm]
 npm install --save @erp-rc/components
 ```
 
-or using yarn:
-
-```bash
+```bash [yarn]
 yarn add @erp-rc/components
 ```
 
-or using pnpm:
+:::
 
-```bash
- pnpm add @erp-rc/components
-```
 
 ## 在项目中使用
 
