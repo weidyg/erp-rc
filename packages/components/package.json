@@ -1,6 +1,6 @@
 {
   "name": "@erp-rc/components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "@erp-rc/components",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -36,7 +36,7 @@
     "react": ">=18.0.0"
   },
   "dependencies": {
-    "@erp-rc/components": "1.0.1",
-    "@erp-rc/print": "1.1.0"
+    "@erp-rc/components": "1.0.2",
+    "@erp-rc/print": "1.1.1"
   }
 }
