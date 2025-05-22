@@ -1,18 +1,16 @@
-# @erp-rc/print
+## 安装
 
-      > @erp-rc/print.
+Using pnpm:
+```bash
+pnpm add @erp-rc/print
+```
 
-      ## Install
+Using npm:
+```bash
+npm install @erp-rc/print
+```
 
-      Using npm:
-
-      ```bash
-      $ npm install --save @erp-rc/print
-      ```
-
-      or using yarn:
-
-      ```bash
-      $ yarn add @erp-rc/print
-      ```
-
+Using yarn:
+```bash
+yarn add @erp-rc/print
+```

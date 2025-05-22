@@ -17,6 +17,7 @@
     "type": "git",
     "url": "https://github.com/weidyg/erp-rc"
   },
+  "homepage": "https://weidyg.github.io/erp-rc",
   "browserslist": [
     "last 2 versions",
     "Firefox ESR",

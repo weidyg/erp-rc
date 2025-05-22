@@ -1,18 +1,16 @@
-# @erp-rc/components
+## 安装
 
-      > @erp-rc/components.
+Using pnpm:
+```bash
+pnpm add @erp-rc/components
+```
 
-      ## Install
+Using npm:
+```bash
+npm install @erp-rc/components
+```
 
-      Using npm:
-
-      ```bash
-      $ npm install --save @erp-rc/components
-      ```
-
-      or using yarn:
-
-      ```bash
-      $ yarn add @erp-rc/components
-      ```
-
+Using yarn:
+```bash
+yarn add @erp-rc/components
+```

@@ -29,6 +29,7 @@ const { yParser } = require('@umijs/utils');
         scripts: {
           build: 'father build',
         },
+        homepage: "https://weidyg.github.io/erp-rc",
         repository: {
           type: 'git',
           url: `https://github.com/weidyg/${projectName}`,
@@ -69,23 +70,22 @@ const { yParser } = require('@umijs/utils');
     //README.md
     const readmePath = join(pkgPath, 'README.md');
     if (args.force || !existsSync(readmePath)) {
-      const readmeText = `# ${name}
+      const readmeText = `## 安装
 
-      > ${json.description}.
-      
-      ## Install
-      
-      Using npm:
-      
-      \`\`\`bash
-      $ npm install --save ${name}
-      \`\`\`
-      
-      or using yarn:
-      
-      \`\`\`bash
-      $ yarn add ${name}
-      \`\`\`
+Using pnpm:
+\`\`\`bash
+pnpm add @erp-rc/print
+\`\`\`
+
+Using npm:
+\`\`\`bash
+npm install @erp-rc/print
+\`\`\`
+
+Using yarn:
+\`\`\`bash
+yarn add @erp-rc/print
+\`\`\`
       `;
       writeFileSync(readmePath, readmeText);
     }

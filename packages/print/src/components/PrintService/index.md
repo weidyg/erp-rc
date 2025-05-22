@@ -32,7 +32,7 @@ apiHeader:
 ### 浏览器直接引入
 
 ```html | pure
-<script src="/js/print.min.js"></script>
+<script src="https://unpkg.com/@erp-rc/print@latest/dist/print.min.js"></script>
 <script type="text/javascript">
   const { prinClientInfos, printService } = erpRcPrint;
 
