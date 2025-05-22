@@ -29,7 +29,7 @@ const { yParser } = require('@umijs/utils');
         scripts: {
           build: 'father build',
         },
-        homepage: "https://weidyg.github.io/erp-rc",
+        homepage: 'https://weidyg.github.io/erp-rc',
         repository: {
           type: 'git',
           url: `https://github.com/weidyg/${projectName}`,
