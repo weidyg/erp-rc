@@ -76,8 +76,8 @@ const config: IDumiConfig = {
 
 export interface IDumiConfig extends IDumiUserConfig {
   themeConfig?: IThemeConfig &
-  Omit<SiteThemeConfig, 'hero'> & {
-    hero?: IHero;
-  };
+    Omit<SiteThemeConfig, 'hero'> & {
+      hero?: IHero;
+    };
 }
 export default defineConfig(config);
