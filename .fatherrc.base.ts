@@ -9,7 +9,7 @@ export default defineConfig({
     ignores: ['src/**/_demos/*'],
     extraBabelPlugins: [
       [require.resolve('./scripts/replaceLib'), {}],
-      ["transform-remove-console", { "exclude": ["error", "warn"] }],
+      ['transform-remove-console', { exclude: ['error', 'warn'] }],
     ],
   },
   cjs: {
@@ -20,7 +20,7 @@ export default defineConfig({
     ignores: ['src/**/_demos/*'],
     extraBabelPlugins: [
       [require.resolve('./scripts/replaceEs'), {}],
-      ["transform-remove-console", { "exclude": ["error", "warn"] }],
+      ['transform-remove-console', { exclude: ['error', 'warn'] }],
     ],
   },
 });

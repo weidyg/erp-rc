@@ -1,2 +1,2 @@
-export * from "./components/PrintService";
-export type * from "./types";
+export * from './components/PrintService';
+export type * from './types';

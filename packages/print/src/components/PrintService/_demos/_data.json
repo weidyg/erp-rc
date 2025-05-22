@@ -1,201 +1,201 @@
 [
-    {
-        "type": "jingdong",
-        "documents": [
-            {
-                "tempUrl": "https://template-content.jd.com/template-oss?tempCode=jdkd76x130",
-                "printData": "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",
-                "addData": {
-                    "sender": {
-                        "name": "发货组(发*组)",
-                        "mobile": "18159591228",
-                        "address": "福建省泉州市石狮市灵秀镇"
-                    }
+  {
+    "type": "jingdong",
+    "documents": [
+      {
+        "tempUrl": "https://template-content.jd.com/template-oss?tempCode=jdkd76x130",
+        "printData": "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",
+        "addData": {
+          "sender": {
+            "name": "发货组(发*组)",
+            "mobile": "18159591228",
+            "address": "福建省泉州市石狮市灵秀镇"
+          }
+        },
+        "customTempUrl": "https://template-content.jd.com/template-open?templateCode=jd1112qcc",
+        "customData": {
+          "TradeNo": "202504241355126332",
+          "TotalQuantity": "1",
+          "TotalWeight": "0.32",
+          "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
+          "LogisticsWatermark": "圆通"
+        },
+        "documentID": "JDVB33387426786"
+      }
+    ]
+  },
+  {
+    "type": "cainiao",
+    "documents": [
+      {
+        "documentID": "1132936001772",
+        "contents": [
+          {
+            "ver": "waybill_print_secret_version_1",
+            "templateURL": "http://cloudprint.cainiao.com/template/standard/101/123",
+            "signature": "19d6f7759487e556ddcdd3d499af087080403277b7deed1a951cc3d9a93c42a7e22ccba94ff609976c5d3ceb069b641f541bc9906098438d362cae002dfd823a8654b2b4f655e96317d7f60eef1372bb983a4e3174cc8d321668c49068071eaea873071ed683dd24810e51afc0bc925b7a2445fdbc2034cdffb12cb4719ca6b7",
+            "encryptedData": "AES:rU904rj6UH2oqfSUb43+Z+XlOkZaULeerkScS5xbmfjZC78uvsMTa3g6l33hRAz/srsk0TObjJaJI5n4tAPV1uv7szIPQGPDhwD6MK+zvTVIfuQCMC8p+cUB5S4FmqDhNE45LRVAlaoaI5YK8QmWK1WorhwnPxOFH4Ws/ApobtzDLDJaW6uu1AMEdAejEhRTWL3B1fRhhcDxc3gX+DZF9jJUB++fb9JZqmocWRu0Fvi/b1BokQx7Xt/N+FpJVRI0//NNUQ9b/W4tqGFIbf2IM/Ez1S5hBru5gKGdFzs99ZgCKqtWa0DnOzrZDXroU1mhurtlulE8QbipInu63fkIwn3h9ZSK0sMyV5Jrk5x3MIJDHeW9pc/Tw4TnKTAU134jl+GbbpYysa0+jBARWRjombeKIFSVfp/zgp15jClClUU1Nz4alTi22LimY2qteQRG6G/rCHiYxPoBRdrtqZZxNSdnKG5yjSdtA2CEL1DJNg1QkFVSSsOuqcHLdrKl6oMR+aUN6wM3GQikmKSU/CH4hWCCXxFaJXvBYoSxZ63GrM/d+l6D4+9+rCxHJoEVsa2E1TMHLUOnN6CweSM+45lcBK19bbCUJDyky6nb1NbxrZGYhmfkrNzE2GN+Cz4iTAgxJlQxd1gVvS4v5nB7qNfb0Uhy9NTopdumxOS7NXFFg3RFdBfAJ0nLGnxECUvUihBC3pwsLGimrUnIF4174m6J6Ga6cQE+Pp1LXgtKf5zWJdWHkm2vQhazcAsQC8JJZFb1ESp1vIAvpy0d0YmGrLLzxWNciHlOa7vguFCVF3UbTFe8r1Mxyym9rqNrZDXWRtBija9yeliMERVFuOTRjlc0PVAzveexQmuD4ESTzMZPtbO0jos1EITKhHcV35Na7E4I7bEe3L2u5yuFuzDA5cc8OA8v761+xOI70bGXUwvFO2kCCiUFEzI9ksLIDTtydBTA94lf4MYH6m0ziRmAhAgcwm5QJFd2G4JzpFIK4+dLuEZamrYUcnHmWzDIg+HYIXh6g3S2maFU7dUtwYoerptOTiVg8FxRlUTx30NDTgjm7ll8vEJXHj7yd/gAO3Vm9P54OSMv8w+pzX3gtCkvthrkjlToT1jMRNJyuJAeSBf5jruzYLS68inlSE/ehT10zhaiBvaCqojZZ2Ux0JQGhbR/nQ==",
+            "addData": {
+              "sender": {
+                "name": "发货组(发*组)",
+                "mobile": "18159591228",
+                "address": {
+                  "province": "福建省",
+                  "city": "泉州市",
+                  "district": "石狮市",
+                  "streetName": "灵秀镇"
+                }
+              }
+            }
+          },
+          {
+            "templateURL": "http://cloudprint.cainiao.com/template/customArea/440439",
+            "data": {
+              "TradeNo": "202504241355126332",
+              "TotalQuantity": "1",
+              "TotalWeight": "0.32",
+              "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
+              "LogisticsWatermark": "圆通"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "pinduoduo",
+    "documents": [
+      {
+        "documentID": "JT5371154998604",
+        "contents": [
+          {
+            "ver": "11",
+            "templateURL": "https://file-link.pinduoduo.com/jtsd_one",
+            "signature": "OyeZ3jnTtZkkLZsXqUkg1BiogXZf0F15HT6kgNJYTYQKm5hmmZy7ks5MctHxhJgVn+F6+NshDoKCiYGDYw8tL7/BLj6JYbuFco7GGBjQd2MDf20iAVuENQMJbhRGyGabJCZYeg06JeUSsNxLCOHfZchbyAXkNZQrSCHuIZlWerI=",
+            "encryptedData": "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?v=11&pv=1",
+            "data": {
+              "TradeNo": "202504241355126332",
+              "TotalQuantity": "1",
+              "TotalWeight": "0.32",
+              "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
+              "LogisticsWatermark": "圆通"
+            },
+            "addData": {
+              "sender": {
+                "name": "发货组(发*组)",
+                "mobile": "18159591228",
+                "address": {
+                  "province": "福建省",
+                  "city": "泉州市",
+                  "district": "石狮市",
+                  "detail": "灵秀镇"
+                }
+              }
+            }
+          },
+          {
+            "templateURL": "https://pos-file.pinduoduo.com/express-common-no-cache/common/xmltemplate/printtemplate_9816b578f26942c999c15efebf3ea9ef.xml",
+            "data": {
+              "TradeNo": "202504241355126332",
+              "TotalQuantity": "1",
+              "TotalWeight": "0.32",
+              "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
+              "LogisticsWatermark": "圆通"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "doudian",
+    "documents": [
+      {
+        "documentID": "YT1933929418077",
+        "contents": [
+          {
+            "params": "access_token=437a91e6-db19-48de-b241-148540b69727&app_key=6881931734833923591&method=logistics.getShopKey&param_json={}&timestamp=2025-05-20 11:38:51&v=2&sign=60B2633C6B51B47FDFBE949D20C4DFB1",
+            "templateURL": "https://lf3-cm.ecombdstatic.com/obj/logistics-davinci/template/v2/yuantong_76_130.xml",
+            "signature": "Gsx0H8lf0DYP7FmJ0YrLst6eypin39YCBFaKPCRIEVkEt0WEN4mJkSHVxU+Wt8pJUO33DTwkshm8Tluu3zIOnpfzNEoZTDe+iW6Uoa7yvqrVYw8D6nB/tkn6F+o95bpN6HsV8zbsmhMbPI8vXPjRfRjUwMuZUNwmMYWpdmJaMntNze19y0gp8lrytAIGVtmrtwdt5LRAAdJWcr0e7QNjrHk8JJvK/l2YFCX7I92V9QjtyFR3nDqRaQSgMcI/CcoSIsnPdruNm3u71AtCsTxNOLDVRuF0XE5tfhynnB0GozqGwx9m74ecuElQRo7UlItVD7llk5u7oNvb7E4vukKDlw==",
+            "encryptedData": "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",
+            "addData": {
+              "senderInfo": {
+                "contact": {
+                  "name": "发货组(发*组)",
+                  "mobile": "18159591228"
                 },
-                "customTempUrl": "https://template-content.jd.com/template-open?templateCode=jd1112qcc",
-                "customData": {
-                    "TradeNo": "202504241355126332",
-                    "TotalQuantity": "1",
-                    "TotalWeight": "0.32",
-                    "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
-                    "LogisticsWatermark": "圆通"
+                "address": {
+                  "countryCode": "CHN",
+                  "provinceName": "福建省",
+                  "cityName": "泉州市",
+                  "districtName": "石狮市",
+                  "streetName": "灵秀镇"
+                }
+              }
+            }
+          },
+          {
+            "templateURL": "https://cloudprint.douyinec.com/api/logistics/davinci/template/xml/D1jcorjbmmqj3c",
+            "data": {
+              "TradeNo": "202504241355126332",
+              "TotalQuantity": "1",
+              "TotalWeight": "0.32",
+              "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
+              "LogisticsWatermark": "圆通"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "kuaishou",
+    "documents": [
+      {
+        "ksOrderFlag": true,
+        "documentID": "0123456789",
+        "contents": [
+          {
+            "ver": "waybill_print_secret_version_1",
+            "key": "dfsjkhhfksjdhfkfksdfjkf",
+            "templateURL": "https://s1-11586.kwimgs.com/kos/nlav11586/EBST-EBSTO6.xml",
+            "signature": "19d6f7759487e556ddcdd3d499af087080403277b7deed1a951cc3d9a93c42a7e22ccba94ff609976c5d3ceb069b641f541bc9906098438d362cae002dfd823a8654b2b4f655e96317d7f60eef1372bb983a4e3174cc8d321668c49068071eaea873071ed683dd24810e51afc0bc925b7a2445fdbc2034cdffb12cb4719ca6b7",
+            "encryptedData": "rU904rj6UH2oqfSUb43+Z+XlOkZaULeerkScS5xbmfjZC78uvsMTa3g6l33hRAz/srsk0TObjJaJI5n4tAPV1uv7szIPQGPDhwD6MK+zvTVIfuQCMC8p+cUB5S4FmqDhNE45LRVAlaoaI5YK8QmWK1WorhwnPxOFH4Ws/ApobtzDLDJaW6uu1AMEdAejEhRTWL3B1fRhhcDxc3gX+DZF9jJUB++fb9JZqmocWRu0Fvi/b1BokQx7Xt/N+FpJVRI0//NNUQ9b/W4tqGFIbf2IM/Ez1S5hBru5gKGdFzs99ZgCKqtWa0DnOzrZDXroU1mhurtlulE8QbipInu63fkIwn3h9ZSK0sMyV5Jrk5x3MIJDHeW9pc/Tw4TnKTAU134jl+GbbpYysa0+jBARWRjombeKIFSVfp/zgp15jClClUU1Nz4alTi22LimY2qteQRG6G/rCHiYxPoBRdrtqZZxNSdnKG5yjSdtA2CEL1DJNg1QkFVSSsOuqcHLdrKl6oMR+aUN6wM3GQikmKSU/CH4hWCCXxFaJXvBYoSxZ63GrM/d+l6D4+9+rCxHJoEVsa2E1TMHLUOnN6CweSM+45lcBK19bbCUJDyky6nb1NbxrZGYhmfkrNzE2GN+Cz4iTAgxJlQxd1gVvS4v5nB7qNfb0Uhy9NTopdumxOS7NXFFg3RFdBfAJ0nLGnxECUvUihBC3pwsLGimrUnIF4174m6J6Ga6cQE+Pp1LXgtKf5zWJdWHkm2vQhazcAsQC8JJZFb1ESp1vIAvpy0d0YmGrLLzxWNciHlOa7vguFCVF3UbTFe8r1Mxyym9rqNrZDXWRtBija9yeliMERVFuOTRjlc0PVAzveexQmuD4ESTzMZPtbO0jos1EITKhHcV35Na7E4I7bEe3L2u5yuFuzDA5cc8OA8v761+xOI70bGXUwvFO2kCCiUFEzI9ksLIDTtydBTA94lf4MYH6m0ziRmAhAgcwm5QJFd2G4JzpFIK4+dLuEZamrYUcnHmWzDIg+HYIXh6g3S2maFU7dUtwYoerptOTiVg8FxRlUTx30NDTgjm7ll8vEJXHj7yd/gAO3Vm9P54OSMv8w+pzX3gtCkvthrkjlToT1jMRNJyuJAeSBf5jruzYLS68inlSE/ehT10zhaiBvaCqojZZ2Ux0JQGhbR/nQ==",
+            "data": {
+              "TradeNo": "202504241355126332",
+              "TotalQuantity": "1",
+              "TotalWeight": "0.32",
+              "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
+              "LogisticsWatermark": "圆通"
+            },
+            "addData": {
+              "senderInfo": {
+                "contact": {
+                  "name": "发货组(发*组)",
+                  "mobile": "18159591228"
                 },
-                "documentID": "JDVB33387426786"
+                "address": {
+                  "countryCode": "CHN",
+                  "provinceName": "福建省",
+                  "cityName": "泉州市",
+                  "districtName": "石狮市",
+                  "streetName": "灵秀镇"
+                }
+              }
             }
-        ]
-    },
-    {
-        "type": "cainiao",
-        "documents": [
-            {
-                "documentID": "1132936001772",
-                "contents": [
-                    {
-                        "ver": "waybill_print_secret_version_1",
-                        "templateURL": "http://cloudprint.cainiao.com/template/standard/101/123",
-                        "signature": "19d6f7759487e556ddcdd3d499af087080403277b7deed1a951cc3d9a93c42a7e22ccba94ff609976c5d3ceb069b641f541bc9906098438d362cae002dfd823a8654b2b4f655e96317d7f60eef1372bb983a4e3174cc8d321668c49068071eaea873071ed683dd24810e51afc0bc925b7a2445fdbc2034cdffb12cb4719ca6b7",
-                        "encryptedData": "AES:rU904rj6UH2oqfSUb43+Z+XlOkZaULeerkScS5xbmfjZC78uvsMTa3g6l33hRAz/srsk0TObjJaJI5n4tAPV1uv7szIPQGPDhwD6MK+zvTVIfuQCMC8p+cUB5S4FmqDhNE45LRVAlaoaI5YK8QmWK1WorhwnPxOFH4Ws/ApobtzDLDJaW6uu1AMEdAejEhRTWL3B1fRhhcDxc3gX+DZF9jJUB++fb9JZqmocWRu0Fvi/b1BokQx7Xt/N+FpJVRI0//NNUQ9b/W4tqGFIbf2IM/Ez1S5hBru5gKGdFzs99ZgCKqtWa0DnOzrZDXroU1mhurtlulE8QbipInu63fkIwn3h9ZSK0sMyV5Jrk5x3MIJDHeW9pc/Tw4TnKTAU134jl+GbbpYysa0+jBARWRjombeKIFSVfp/zgp15jClClUU1Nz4alTi22LimY2qteQRG6G/rCHiYxPoBRdrtqZZxNSdnKG5yjSdtA2CEL1DJNg1QkFVSSsOuqcHLdrKl6oMR+aUN6wM3GQikmKSU/CH4hWCCXxFaJXvBYoSxZ63GrM/d+l6D4+9+rCxHJoEVsa2E1TMHLUOnN6CweSM+45lcBK19bbCUJDyky6nb1NbxrZGYhmfkrNzE2GN+Cz4iTAgxJlQxd1gVvS4v5nB7qNfb0Uhy9NTopdumxOS7NXFFg3RFdBfAJ0nLGnxECUvUihBC3pwsLGimrUnIF4174m6J6Ga6cQE+Pp1LXgtKf5zWJdWHkm2vQhazcAsQC8JJZFb1ESp1vIAvpy0d0YmGrLLzxWNciHlOa7vguFCVF3UbTFe8r1Mxyym9rqNrZDXWRtBija9yeliMERVFuOTRjlc0PVAzveexQmuD4ESTzMZPtbO0jos1EITKhHcV35Na7E4I7bEe3L2u5yuFuzDA5cc8OA8v761+xOI70bGXUwvFO2kCCiUFEzI9ksLIDTtydBTA94lf4MYH6m0ziRmAhAgcwm5QJFd2G4JzpFIK4+dLuEZamrYUcnHmWzDIg+HYIXh6g3S2maFU7dUtwYoerptOTiVg8FxRlUTx30NDTgjm7ll8vEJXHj7yd/gAO3Vm9P54OSMv8w+pzX3gtCkvthrkjlToT1jMRNJyuJAeSBf5jruzYLS68inlSE/ehT10zhaiBvaCqojZZ2Ux0JQGhbR/nQ==",
-                        "addData": {
-                            "sender": {
-                                "name": "发货组(发*组)",
-                                "mobile": "18159591228",
-                                "address": {
-                                    "province": "福建省",
-                                    "city": "泉州市",
-                                    "district": "石狮市",
-                                    "streetName": "灵秀镇"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "templateURL": "http://cloudprint.cainiao.com/template/customArea/440439",
-                        "data": {
-                            "TradeNo": "202504241355126332",
-                            "TotalQuantity": "1",
-                            "TotalWeight": "0.32",
-                            "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
-                            "LogisticsWatermark": "圆通"
-                        }
-                    }
-                ]
+          },
+          {
+            "templateURL": "https://s2-11586.kwimgs.com/kos/nlav11586/template/custom/EBCT-EBCTO20.xml",
+            "customData": {
+              "TradeNo": "202504241355126332",
+              "TotalQuantity": "1",
+              "TotalWeight": "0.32",
+              "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
+              "LogisticsWatermark": "圆通"
             }
+          }
         ]
-    },
-    {
-        "type": "pinduoduo",
-        "documents": [
-            {
-                "documentID": "JT5371154998604",
-                "contents": [
-                    {
-                        "ver": "11",
-                        "templateURL": "https://file-link.pinduoduo.com/jtsd_one",
-                        "signature": "OyeZ3jnTtZkkLZsXqUkg1BiogXZf0F15HT6kgNJYTYQKm5hmmZy7ks5MctHxhJgVn+F6+NshDoKCiYGDYw8tL7/BLj6JYbuFco7GGBjQd2MDf20iAVuENQMJbhRGyGabJCZYeg06JeUSsNxLCOHfZchbyAXkNZQrSCHuIZlWerI=",
-                        "encryptedData": "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?v=11&pv=1",
-                        "data": {
-                            "TradeNo": "202504241355126332",
-                            "TotalQuantity": "1",
-                            "TotalWeight": "0.32",
-                            "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
-                            "LogisticsWatermark": "圆通"
-                        },
-                        "addData": {
-                            "sender": {
-                                "name": "发货组(发*组)",
-                                "mobile": "18159591228",
-                                "address": {
-                                    "province": "福建省",
-                                    "city": "泉州市",
-                                    "district": "石狮市",
-                                    "detail": "灵秀镇"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "templateURL": "https://pos-file.pinduoduo.com/express-common-no-cache/common/xmltemplate/printtemplate_9816b578f26942c999c15efebf3ea9ef.xml",
-                        "data": {
-                            "TradeNo": "202504241355126332",
-                            "TotalQuantity": "1",
-                            "TotalWeight": "0.32",
-                            "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
-                            "LogisticsWatermark": "圆通"
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "type": "doudian",
-        "documents": [
-            {
-                "documentID": "YT1933929418077",
-                "contents": [
-                    {
-                        "params": "access_token=437a91e6-db19-48de-b241-148540b69727&app_key=6881931734833923591&method=logistics.getShopKey&param_json={}&timestamp=2025-05-20 11:38:51&v=2&sign=60B2633C6B51B47FDFBE949D20C4DFB1",
-                        "templateURL": "https://lf3-cm.ecombdstatic.com/obj/logistics-davinci/template/v2/yuantong_76_130.xml",
-                        "signature": "Gsx0H8lf0DYP7FmJ0YrLst6eypin39YCBFaKPCRIEVkEt0WEN4mJkSHVxU+Wt8pJUO33DTwkshm8Tluu3zIOnpfzNEoZTDe+iW6Uoa7yvqrVYw8D6nB/tkn6F+o95bpN6HsV8zbsmhMbPI8vXPjRfRjUwMuZUNwmMYWpdmJaMntNze19y0gp8lrytAIGVtmrtwdt5LRAAdJWcr0e7QNjrHk8JJvK/l2YFCX7I92V9QjtyFR3nDqRaQSgMcI/CcoSIsnPdruNm3u71AtCsTxNOLDVRuF0XE5tfhynnB0GozqGwx9m74ecuElQRo7UlItVD7llk5u7oNvb7E4vukKDlw==",
-                        "encryptedData": "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",
-                        "addData": {
-                            "senderInfo": {
-                                "contact": {
-                                    "name": "发货组(发*组)",
-                                    "mobile": "18159591228"
-                                },
-                                "address": {
-                                    "countryCode": "CHN",
-                                    "provinceName": "福建省",
-                                    "cityName": "泉州市",
-                                    "districtName": "石狮市",
-                                    "streetName": "灵秀镇"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "templateURL": "https://cloudprint.douyinec.com/api/logistics/davinci/template/xml/D1jcorjbmmqj3c",
-                        "data": {
-                            "TradeNo": "202504241355126332",
-                            "TotalQuantity": "1",
-                            "TotalWeight": "0.32",
-                            "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
-                            "LogisticsWatermark": "圆通"
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "type": "kuaishou",
-        "documents": [
-            {
-                "ksOrderFlag": true,
-                "documentID": "0123456789",
-                "contents": [
-                    {
-                        "ver": "waybill_print_secret_version_1",
-                        "key": "dfsjkhhfksjdhfkfksdfjkf",
-                        "templateURL": "https://s1-11586.kwimgs.com/kos/nlav11586/EBST-EBSTO6.xml",
-                        "signature": "19d6f7759487e556ddcdd3d499af087080403277b7deed1a951cc3d9a93c42a7e22ccba94ff609976c5d3ceb069b641f541bc9906098438d362cae002dfd823a8654b2b4f655e96317d7f60eef1372bb983a4e3174cc8d321668c49068071eaea873071ed683dd24810e51afc0bc925b7a2445fdbc2034cdffb12cb4719ca6b7",
-                        "encryptedData": "rU904rj6UH2oqfSUb43+Z+XlOkZaULeerkScS5xbmfjZC78uvsMTa3g6l33hRAz/srsk0TObjJaJI5n4tAPV1uv7szIPQGPDhwD6MK+zvTVIfuQCMC8p+cUB5S4FmqDhNE45LRVAlaoaI5YK8QmWK1WorhwnPxOFH4Ws/ApobtzDLDJaW6uu1AMEdAejEhRTWL3B1fRhhcDxc3gX+DZF9jJUB++fb9JZqmocWRu0Fvi/b1BokQx7Xt/N+FpJVRI0//NNUQ9b/W4tqGFIbf2IM/Ez1S5hBru5gKGdFzs99ZgCKqtWa0DnOzrZDXroU1mhurtlulE8QbipInu63fkIwn3h9ZSK0sMyV5Jrk5x3MIJDHeW9pc/Tw4TnKTAU134jl+GbbpYysa0+jBARWRjombeKIFSVfp/zgp15jClClUU1Nz4alTi22LimY2qteQRG6G/rCHiYxPoBRdrtqZZxNSdnKG5yjSdtA2CEL1DJNg1QkFVSSsOuqcHLdrKl6oMR+aUN6wM3GQikmKSU/CH4hWCCXxFaJXvBYoSxZ63GrM/d+l6D4+9+rCxHJoEVsa2E1TMHLUOnN6CweSM+45lcBK19bbCUJDyky6nb1NbxrZGYhmfkrNzE2GN+Cz4iTAgxJlQxd1gVvS4v5nB7qNfb0Uhy9NTopdumxOS7NXFFg3RFdBfAJ0nLGnxECUvUihBC3pwsLGimrUnIF4174m6J6Ga6cQE+Pp1LXgtKf5zWJdWHkm2vQhazcAsQC8JJZFb1ESp1vIAvpy0d0YmGrLLzxWNciHlOa7vguFCVF3UbTFe8r1Mxyym9rqNrZDXWRtBija9yeliMERVFuOTRjlc0PVAzveexQmuD4ESTzMZPtbO0jos1EITKhHcV35Na7E4I7bEe3L2u5yuFuzDA5cc8OA8v761+xOI70bGXUwvFO2kCCiUFEzI9ksLIDTtydBTA94lf4MYH6m0ziRmAhAgcwm5QJFd2G4JzpFIK4+dLuEZamrYUcnHmWzDIg+HYIXh6g3S2maFU7dUtwYoerptOTiVg8FxRlUTx30NDTgjm7ll8vEJXHj7yd/gAO3Vm9P54OSMv8w+pzX3gtCkvthrkjlToT1jMRNJyuJAeSBf5jruzYLS68inlSE/ehT10zhaiBvaCqojZZ2Ux0JQGhbR/nQ==",
-                        "data": {
-                            "TradeNo": "202504241355126332",
-                            "TotalQuantity": "1",
-                            "TotalWeight": "0.32",
-                            "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
-                            "LogisticsWatermark": "圆通"
-                        },
-                        "addData": {
-                            "senderInfo": {
-                                "contact": {
-                                    "name": "发货组(发*组)",
-                                    "mobile": "18159591228"
-                                },
-                                "address": {
-                                    "countryCode": "CHN",
-                                    "provinceName": "福建省",
-                                    "cityName": "泉州市",
-                                    "districtName": "石狮市",
-                                    "streetName": "灵秀镇"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "templateURL": "https://s2-11586.kwimgs.com/kos/nlav11586/template/custom/EBCT-EBCTO20.xml",
-                        "customData": {
-                            "TradeNo": "202504241355126332",
-                            "TotalQuantity": "1",
-                            "TotalWeight": "0.32",
-                            "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
-                            "LogisticsWatermark": "圆通"
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+      }
+    ]
+  }
 ]

@@ -7,7 +7,7 @@ const { yParser } = require('@umijs/utils');
 
   const packageRootPath = join(__dirname, '../package.json');
   const { name: projectName, version } = require(packageRootPath);
-  
+
   const pkgs = readdirSync(join(__dirname, '../packages')).filter((pkg) => pkg.charAt(0) !== '.');
   pkgs.forEach((shortName) => {
     const name = `@${projectName}/${shortName}`;
@@ -101,10 +101,10 @@ const { yParser } = require('@umijs/utils');
     //.fatherrc.ts
     const fatherrcPath = join(pkgPath, '.fatherrc.ts');
     if (args.force || !existsSync(fatherrcPath)) {
-    // Convert package name to UMD name, e.g., @erp-rc/print -> erpRcPrint
-    const umdName = name
-      .replace(/^@/, '') // remove leading @
-      .replace(/[-/](\w)/g, (_, c) => c.toUpperCase()); // convert -x or /x to X
+      // Convert package name to UMD name, e.g., @erp-rc/print -> erpRcPrint
+      const umdName = name
+        .replace(/^@/, '') // remove leading @
+        .replace(/[-/](\w)/g, (_, c) => c.toUpperCase()); // convert -x or /x to X
 
       const fatherrcConfig = `import { defineConfig } from 'father';
 

@@ -6,7 +6,6 @@ import { IHero, SiteThemeConfig } from 'dumi-theme-antd-style';
 import { IThemeConfig } from 'dumi/dist/client/theme-api/types';
 import { IDumiUserConfig } from 'dumi/dist/types';
 
-
 const packagePath = join(__dirname, 'package.json');
 const { name: projectName, version } = require(packagePath);
 
@@ -79,8 +78,8 @@ const config: IDumiConfig = {
 
 export interface IDumiConfig extends IDumiUserConfig {
   themeConfig?: IThemeConfig &
-  Omit<SiteThemeConfig, 'hero'> & {
-    hero?: IHero;
-  };
+    Omit<SiteThemeConfig, 'hero'> & {
+      hero?: IHero;
+    };
 }
 export default defineConfig(config);

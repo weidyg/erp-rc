@@ -12,8 +12,6 @@ export default defineConfig({
       '^/antd/.*': 'antd',
       '^/dayjs/.*': 'dayjs',
     },
-     extraBabelPlugins: [
-        ["transform-remove-console", { "exclude": ["error", "warn"] }]
-    ]
+    extraBabelPlugins: [['transform-remove-console', { exclude: ['error', 'warn'] }]],
   },
 });

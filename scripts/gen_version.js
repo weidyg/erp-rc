@@ -13,7 +13,7 @@ let packagesPath = join(__dirname, '../packages');
 const pkgPathList = readdirSync(packagesPath).filter((pkg) => pkg.charAt(0) !== '.');
 
 const pkgList = pkgPathList
-  .filter(f => !ignorePkgPath.includes(f))
+  .filter((f) => !ignorePkgPath.includes(f))
   .map((pkg) => {
     const package_path = join(packagesPath, pkg);
     const packageJsonPath = join(package_path, 'package.json');
