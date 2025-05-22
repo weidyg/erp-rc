@@ -43,19 +43,17 @@ const config: IDumiConfig = {
     { id: 'en-US', name: 'English' },
   ],
   themeConfig: {
-    name: 'React组件',
+    name: 'erp-rc',
     logo: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
     github: `https://github.com/weidyg/${projectName}`,
     nav: {
       'zh-CN': [
         { title: '文档', link: '/docs' },
         { title: '组件', link: '/components' },
-        { title: 'Changelog', link: '/changelog' },
       ],
       'en-US': [
         { title: 'Docs', link: '/en-US/docs' },
         { title: 'Components', link: '/en-US/components' },
-        { title: 'Changelog', link: '/en-US/changelog' },
       ],
     },
     footerConfig: {
@@ -78,8 +76,8 @@ const config: IDumiConfig = {
 
 export interface IDumiConfig extends IDumiUserConfig {
   themeConfig?: IThemeConfig &
-    Omit<SiteThemeConfig, 'hero'> & {
-      hero?: IHero;
-    };
+  Omit<SiteThemeConfig, 'hero'> & {
+    hero?: IHero;
+  };
 }
 export default defineConfig(config);

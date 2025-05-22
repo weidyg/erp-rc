@@ -1,6 +1,6 @@
 ---
 hero:
-  title: React组件
+  title: erp-rc
   description: 🏆 让中后台开发更简单
   actions:
     - text: 🏮🏮 快速开始 →
