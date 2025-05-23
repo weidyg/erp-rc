@@ -462,10 +462,8 @@ export type WaybillDocument = {
     encryptedData?: string;
     data?: { [k: string]: any };
     addData?: { [k: string]: any };
-
-    key?: string;
     ver?: string;
-    params?: string;
+    extraProperties?: { [k: string]: any };
   };
   customArea?: {
     templateURL: string;

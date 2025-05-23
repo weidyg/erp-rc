@@ -216,15 +216,15 @@ class PrintService {
             customTempUrl: customArea?.templateURL,
             customData: customArea?.data,
             dataType: jdDataType,
+            ...standardArea?.extraProperties
           };
           if (sender) {
             var _sender = {
               name: sender.name,
               mobile: sender.mobile,
               phone: sender.phone,
-              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${
-                sender.address ?? ''
-              }`,
+              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${sender.address ?? ''
+                }`,
             };
             content.addData = content.addData || {};
             content.addData.sender = _sender;
@@ -243,7 +243,7 @@ class PrintService {
           const { documentID, sender, standardArea, customArea, ...rest } = doc;
           const contents: CainiaoPrintDocument['contents'] = [];
           if (standardArea) {
-            const { templateURL, signature, encryptedData, data, addData = {}, ...rest } = standardArea;
+            const { templateURL, signature, encryptedData, data, addData = {}, extraProperties = {}, ...rest } = standardArea;
             const content: CainiaoPrintContent = {
               templateURL,
               signature,
@@ -253,18 +253,19 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                      name: sender.name,
-                      mobile: sender.mobile,
-                      phone: sender.phone,
-                      address: {
-                        province: sender.province,
-                        city: sender.city,
-                        district: sender.district,
-                        detail: `${sender.street ?? ''}${sender.address ?? ''}`,
-                      },
-                    }
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                    address: {
+                      province: sender.province,
+                      city: sender.city,
+                      district: sender.district,
+                      detail: `${sender.street ?? ''}${sender.address ?? ''}`,
+                    },
+                  }
                   : addData.sender,
               },
+              ...extraProperties,
               ...rest,
             };
             contents.push(content);
@@ -291,7 +292,7 @@ class PrintService {
           const { documentID, sender, standardArea, customArea, ...rest } = doc;
           const contents: DoudianPrintDocument['contents'] = [];
           if (standardArea) {
-            const { templateURL, signature, encryptedData, data, addData = {}, params, ...rest } = standardArea;
+            const { templateURL, signature, encryptedData, data, addData = {}, extraProperties = {}, ...rest } = standardArea;
             const content: DoudianPrintContent = {
               templateURL,
               signature,
@@ -301,21 +302,21 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                      address: {
-                        provinceName: sender.province,
-                        cityName: sender.city,
-                        districtName: sender.district,
-                        streetName: sender.street,
-                        detailAddress: sender.address,
-                      },
-                      contact: {
-                        name: sender.name,
-                        mobile: sender.mobile,
-                      },
-                    }
+                    address: {
+                      provinceName: sender.province,
+                      cityName: sender.city,
+                      districtName: sender.district,
+                      streetName: sender.street,
+                      detailAddress: sender.address,
+                    },
+                    contact: {
+                      name: sender.name,
+                      mobile: sender.mobile,
+                    },
+                  }
                   : addData.senderInfo,
               },
-              params,
+              ...extraProperties,
               ...rest,
             };
             contents.push(content);
@@ -342,7 +343,7 @@ class PrintService {
           const { documentID, sender, standardArea, customArea, ...rest } = doc;
           const contents: PinduoduoPrintDocument['contents'] = [];
           if (standardArea) {
-            const { templateURL, signature, encryptedData, data, addData = {}, params, ...rest } = standardArea;
+            const { templateURL, signature, encryptedData, data, addData = {}, extraProperties = {}, ...rest } = standardArea;
             const content: PinduoduoPrintContent = {
               templateURL,
               signature,
@@ -352,19 +353,20 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                      address: {
-                        province: sender.province,
-                        city: sender.city,
-                        district: sender.district,
-                        town: sender.street,
-                        detail: sender.address,
-                      },
-                      name: sender.name,
-                      mobile: sender.mobile,
-                      phone: sender.phone,
-                    }
+                    address: {
+                      province: sender.province,
+                      city: sender.city,
+                      district: sender.district,
+                      town: sender.street,
+                      detail: sender.address,
+                    },
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                  }
                   : addData.sender,
               },
+              ...extraProperties,
               ...rest,
             };
             contents.push(content);
@@ -391,7 +393,7 @@ class PrintService {
           const { documentID, sender, standardArea, customArea, ...rest } = doc;
           const contents: KuaishouPrintDocument['contents'] = [];
           if (standardArea) {
-            const { templateURL, signature, encryptedData, data, addData = {}, params, ...rest } = standardArea;
+            const { templateURL, signature, encryptedData, data, addData = {}, extraProperties = {}, ...rest } = standardArea;
             const content: KuaishouPrintContent = {
               templateURL,
               signature,
@@ -401,20 +403,21 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                      address: {
-                        provinceName: sender.province,
-                        cityName: sender.city,
-                        districtName: sender.district,
-                        streetName: sender.street,
-                        detailAddress: sender.address,
-                      },
-                      contact: {
-                        name: sender.name,
-                        mobile: sender.mobile,
-                      },
-                    }
+                    address: {
+                      provinceName: sender.province,
+                      cityName: sender.city,
+                      districtName: sender.district,
+                      streetName: sender.street,
+                      detailAddress: sender.address,
+                    },
+                    contact: {
+                      name: sender.name,
+                      mobile: sender.mobile,
+                    },
+                  }
                   : addData.senderInfo,
               },
+              ...extraProperties,
               ...rest,
             };
             contents.push(content);
