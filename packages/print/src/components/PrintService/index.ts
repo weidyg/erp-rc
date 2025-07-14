@@ -25,6 +25,7 @@ import {
   DoudianPrintContent,
   PinduoduoPrintContent,
   KuaishouPrintContent,
+  ConnectParams,
 } from '../../types';
 
 export const prinClientInfos: Record<PrintClientType, { name: string; wsUrl: string; wssUrl?: string }> = {
@@ -60,11 +61,33 @@ class PrintService {
     this.send(type, request);
   }
 
+  public connect(params: ConnectParams) {
+    const { type, onOpen, onError } = params || {};
+    let errorFun = (rawData: EventData): void => {
+      if (rawData?.requestID == 'ws_close'
+        || rawData?.requestID == 'ws_error') {
+        onError?.(rawData);
+        this._eventBus.offError(type, errorFun);
+      }
+    };
+    this._eventBus.onError(type, errorFun);
+    
+    let socket = this._sockets[type];
+    if (!socket) {
+      socket = this.openWebSocket(type, () => {
+        onOpen?.(socket);
+      });
+    } else {
+      onOpen?.(socket);
+    }
+    return socket;
+  }
+
   private send(type: PrintClientType, request: any) {
     const data = JSON.stringify(request);
     let socket = this._sockets[type];
     if (!socket) {
-      socket = this.connect(type, () => {
+      socket = this.openWebSocket(type, () => {
         socket?.send(data);
       });
     } else {
@@ -72,48 +95,54 @@ class PrintService {
     }
     return socket;
   }
-  private connect(type: PrintClientType, onopen: (ev: Event) => void) {
+
+  private openWebSocket(type: PrintClientType,
+    onopen?: (ev: Event) => void,
+    onclose?: (ev: CloseEvent) => void,
+  ) {
     const { name, wsUrl } = prinClientInfos[type] || {};
     const socket = new WebSocket(wsUrl);
     socket.onopen = (ev: Event) => {
       console.log(`【WebSocket】${type} Client open`, ev);
       this._sockets[type] = socket;
-      onopen(ev);
+      onopen?.(ev);
     };
     socket.onclose = (ev: CloseEvent) => {
       console.log(`【WebSocket】${type} Client closed`, ev);
       this._sockets[type] = undefined;
+      this._eventBus.emitError(type, { requestID: 'ws_close', msg: `${name}打印控件已关闭!` });
+      onclose?.(ev);
     };
     socket.onmessage = (ev: MessageEvent) => {
+      console.log(`【WebSocket】${type} Client received a message`, ev.data);
       const data = JSON.parse(ev.data) || {};
-      console.log(`【WebSocket】${type} Client received a message`, data);
       switch (type) {
         case 'jingdong':
           data.requestID = data.requestID || data.key;
           if (data.code === '2') {
-            this._eventBus.emitNotifyPrintResult(data);
+            this._eventBus.emitNotifyPrintResult(type, data);
           } else if (data.code === '6') {
-            this._eventBus.emitGetPrinters(data);
+            this._eventBus.emitGetPrinters(type, data);
           }
           break;
         case 'pinduoduo':
           if (data.cmd === 'print') {
-            this._eventBus.emitPrint(data);
+            this._eventBus.emitPrint(type, data);
           } else if (data.cmd == 'PrintResultNotify') {
             //pdd 打印回调 没回传 requestID
             data.requestID = data.requestID || data.taskID;
-            this._eventBus.emitNotifyPrintResult(data);
+            this._eventBus.emitNotifyPrintResult(type, data);
           } else if (data.cmd === 'getPrinters') {
-            this._eventBus.emitGetPrinters(data);
+            this._eventBus.emitGetPrinters(type, data);
           }
           break;
         default:
           if (data.cmd === 'print') {
-            this._eventBus.emitPrint(data);
+            this._eventBus.emitPrint(type, data);
           } else if (data.cmd == 'notifyPrintResult') {
-            this._eventBus.emitNotifyPrintResult(data);
+            this._eventBus.emitNotifyPrintResult(type, data);
           } else if (data.cmd === 'getPrinters') {
-            this._eventBus.emitGetPrinters(data);
+            this._eventBus.emitGetPrinters(type, data);
           }
           break;
       }
@@ -121,7 +150,7 @@ class PrintService {
     socket.onerror = (ev: Event) => {
       console.log(`【WebSocket】${type} Client error`, ev);
       this._sockets[type] = undefined;
-      this._eventBus.emitError({ requestID: 'ws_error', msg: `连接${name}打印控件失败!` });
+      this._eventBus.emitError(type, { requestID: 'ws_error', msg: `连接${name}打印控件失败!` });
     };
     return socket;
   }
@@ -223,9 +252,8 @@ class PrintService {
               name: sender.name,
               mobile: sender.mobile,
               phone: sender.phone,
-              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${
-                sender.address ?? ''
-              }`,
+              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${sender.address ?? ''
+                }`,
             };
             content.addData = content.addData || {};
             content.addData.sender = _sender;
@@ -262,16 +290,16 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                      name: sender.name,
-                      mobile: sender.mobile,
-                      phone: sender.phone,
-                      address: {
-                        province: sender.province,
-                        city: sender.city,
-                        district: sender.district,
-                        detail: `${sender.street ?? ''}${sender.address ?? ''}`,
-                      },
-                    }
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                    address: {
+                      province: sender.province,
+                      city: sender.city,
+                      district: sender.district,
+                      detail: `${sender.street ?? ''}${sender.address ?? ''}`,
+                    },
+                  }
                   : addData.sender,
               },
               ...extraProperties,
@@ -319,18 +347,18 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                      address: {
-                        provinceName: sender.province,
-                        cityName: sender.city,
-                        districtName: sender.district,
-                        streetName: sender.street,
-                        detailAddress: sender.address,
-                      },
-                      contact: {
-                        name: sender.name,
-                        mobile: sender.mobile,
-                      },
-                    }
+                    address: {
+                      provinceName: sender.province,
+                      cityName: sender.city,
+                      districtName: sender.district,
+                      streetName: sender.street,
+                      detailAddress: sender.address,
+                    },
+                    contact: {
+                      name: sender.name,
+                      mobile: sender.mobile,
+                    },
+                  }
                   : addData.senderInfo,
               },
               ...extraProperties,
@@ -378,17 +406,17 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                      address: {
-                        province: sender.province,
-                        city: sender.city,
-                        district: sender.district,
-                        town: sender.street,
-                        detail: sender.address,
-                      },
-                      name: sender.name,
-                      mobile: sender.mobile,
-                      phone: sender.phone,
-                    }
+                    address: {
+                      province: sender.province,
+                      city: sender.city,
+                      district: sender.district,
+                      town: sender.street,
+                      detail: sender.address,
+                    },
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                  }
                   : addData.sender,
               },
               ...extraProperties,
@@ -436,18 +464,18 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                      address: {
-                        provinceName: sender.province,
-                        cityName: sender.city,
-                        districtName: sender.district,
-                        streetName: sender.street,
-                        detailAddress: sender.address,
-                      },
-                      contact: {
-                        name: sender.name,
-                        mobile: sender.mobile,
-                      },
-                    }
+                    address: {
+                      provinceName: sender.province,
+                      cityName: sender.city,
+                      districtName: sender.district,
+                      streetName: sender.street,
+                      detailAddress: sender.address,
+                    },
+                    contact: {
+                      name: sender.name,
+                      mobile: sender.mobile,
+                    },
+                  }
                   : addData.senderInfo,
               },
               ...extraProperties,
@@ -512,11 +540,11 @@ class PrintService {
         offEventBus();
       }
     };
-    this._eventBus.onError(errorFun);
-    this._eventBus.onGetPrinters(getPrintersFun);
+    this._eventBus.onError(type, errorFun);
+    this._eventBus.onGetPrinters(type, getPrintersFun);
     let offEventBus = () => {
-      this._eventBus.offError(errorFun);
-      this._eventBus.offGetPrinters(getPrintersFun);
+      this._eventBus.offError(type, errorFun);
+      this._eventBus.offGetPrinters(type, getPrintersFun);
     };
   }
   private registerEventBus_print(requestID: string, params: PrintParams) {
@@ -639,13 +667,13 @@ class PrintService {
     };
 
     let offEventBus = () => {
-      this._eventBus.offError(errorFun);
-      this._eventBus.offPrint(printFun);
-      this._eventBus.offNotifyPrintResult(notifyPrintResultFun);
+      this._eventBus.offError(type, errorFun);
+      this._eventBus.offPrint(type, printFun);
+      this._eventBus.offNotifyPrintResult(type, notifyPrintResultFun);
     };
-    this._eventBus.onError(errorFun);
-    this._eventBus.onPrint(printFun);
-    this._eventBus.onNotifyPrintResult(notifyPrintResultFun);
+    this._eventBus.onError(type, errorFun);
+    this._eventBus.onPrint(type, printFun);
+    this._eventBus.onNotifyPrintResult(type, notifyPrintResultFun);
   }
   private parsePrintDocStatus(data: PrintDocStatus): PrintDocStatus {
     const { documentID } = data;

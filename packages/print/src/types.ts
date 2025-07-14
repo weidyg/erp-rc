@@ -35,6 +35,11 @@ export type PrintParams = {
   onError: (data: PrintError, rawData: any) => void;
 };
 
+export type ConnectParams = {
+  type: PrintClientType;
+  onOpen: (socket?: WebSocket) => void;
+  onError: (rawData: any) => void;
+};
 //https://open.jdl.com/#/open-business-document/access-guide/157/54222
 
 export type JingdongPrintResult = {
@@ -121,16 +126,16 @@ export type CainiaoPrintDocument = PrintDocument & {
 };
 export type CainiaoPrintContent =
   | {
-      encryptedData?: string;
-      signature?: string;
-      templateURL?: string;
-      addData?: { [k: string]: any };
-      ver?: string;
-    }
+    encryptedData?: string;
+    signature?: string;
+    templateURL?: string;
+    addData?: { [k: string]: any };
+    ver?: string;
+  }
   | {
-      data?: { [k: string]: any };
-      templateURL?: string;
-    };
+    data?: { [k: string]: any };
+    templateURL?: string;
+  };
 export type CainiaoPrintRequest = {
   cmd: 'print';
   requestID: string;
@@ -184,36 +189,36 @@ export type DoudianPrintDocument = PrintDocument & {
 };
 export type DoudianPrintContent =
   | {
-      params: string; //access_token=值&app_key=值&method=logistics.getShopKey&param_json={}&timestamp=时间&v=2&sign=值，各参数值的生成详见电商开放平台https://op.jinritemai.com/docs/guide-docs/10/23，其中的method=logistics.getShopKey，param_json={}
-      encryptedData: string;
-      signature?: string;
-      templateURL?: string;
-      addData?: {
-        //密文中有发件人信息，修改发件人信息，可选
-        senderInfo?: {
-          address?: {
-            cityName?: string;
-            countryCode?: string;
-            detailAddress?: string;
-            districtName?: string;
-            provinceName?: string;
-            streetName?: string;
-          };
-          contact?: {
-            mobile?: string;
-            name?: string;
-          };
+    params: string; //access_token=值&app_key=值&method=logistics.getShopKey&param_json={}&timestamp=时间&v=2&sign=值，各参数值的生成详见电商开放平台https://op.jinritemai.com/docs/guide-docs/10/23，其中的method=logistics.getShopKey，param_json={}
+    encryptedData: string;
+    signature?: string;
+    templateURL?: string;
+    addData?: {
+      //密文中有发件人信息，修改发件人信息，可选
+      senderInfo?: {
+        address?: {
+          cityName?: string;
+          countryCode?: string;
+          detailAddress?: string;
+          districtName?: string;
+          provinceName?: string;
+          streetName?: string;
+        };
+        contact?: {
+          mobile?: string;
+          name?: string;
         };
       };
-      config?: {
-        printMask?: string; //0x40 //不打印模板上的 "保价金额"
-        packageNumber?: string; //"1/3"//包裹号
-      };
-    }
-  | {
-      data?: { [k: string]: any };
-      templateURL?: string;
     };
+    config?: {
+      printMask?: string; //0x40 //不打印模板上的 "保价金额"
+      packageNumber?: string; //"1/3"//包裹号
+    };
+  }
+  | {
+    data?: { [k: string]: any };
+    templateURL?: string;
+  };
 export type DoudianPrintRequest = {
   cmd: 'print';
   requestID: string;
@@ -259,31 +264,31 @@ export type PinduoduoPrintDocument = PrintDocument & {
 };
 export type PinduoduoPrintContent =
   | {
-      encryptedData?: string;
-      signature?: string;
-      templateUrl?: string;
-      userid?: string;
-      ver?: string;
-      addData?: {
-        //密文中有发件人信息，修改发件人信息，可选
-        sender?: {
-          address?: {
-            province?: string;
-            city?: string;
-            district?: string;
-            town?: string;
-            detail?: string;
-          };
-          mobile?: string;
-          phone?: string;
-          name?: string;
+    encryptedData?: string;
+    signature?: string;
+    templateUrl?: string;
+    userid?: string;
+    ver?: string;
+    addData?: {
+      //密文中有发件人信息，修改发件人信息，可选
+      sender?: {
+        address?: {
+          province?: string;
+          city?: string;
+          district?: string;
+          town?: string;
+          detail?: string;
         };
+        mobile?: string;
+        phone?: string;
+        name?: string;
       };
-    }
-  | {
-      data?: { [k: string]: any };
-      templateURL?: string;
     };
+  }
+  | {
+    data?: { [k: string]: any };
+    templateURL?: string;
+  };
 export type PinduoduoPrintRequest = {
   ERPId?: string; //"isv id"
   ISVName?: string;
@@ -328,33 +333,33 @@ export type KuaishouPrintDocument = PrintDocument & {
 };
 export type KuaishouPrintContent =
   | {
-      data?: { [k: string]: any };
-      addData?: {
-        senderInfo?: {
-          address?: {
-            cityName?: string;
-            countryCode?: string;
-            detailAddress?: string;
-            districtName?: string;
-            provinceName?: string;
-            streetName?: string;
-          };
-          contact?: {
-            mobile?: string;
-            name?: string;
-          };
+    data?: { [k: string]: any };
+    addData?: {
+      senderInfo?: {
+        address?: {
+          cityName?: string;
+          countryCode?: string;
+          detailAddress?: string;
+          districtName?: string;
+          provinceName?: string;
+          streetName?: string;
+        };
+        contact?: {
+          mobile?: string;
+          name?: string;
         };
       };
-      encryptedData?: string;
-      signature?: string;
-      templateURL: string;
-      key?: string;
-      ver?: string;
-    }
-  | {
-      customData: { [k: string]: any };
-      templateURL: string;
     };
+    encryptedData?: string;
+    signature?: string;
+    templateURL: string;
+    key?: string;
+    ver?: string;
+  }
+  | {
+    customData: { [k: string]: any };
+    templateURL: string;
+  };
 
 export type KuaishouPrintRequest = {
   cmd: 'print';
