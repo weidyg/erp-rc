@@ -36,10 +36,10 @@ export type PrintParams = {
 };
 
 export type ConnectParams = {
-  requestID?: string;
+  id?: string;
   type: PrintClientType;
-  onOpen: (socket?: WebSocket) => void;
-  onError: (rawData: any) => void;
+  onOpen: () => void;
+  onClose: () => void;
 };
 //https://open.jdl.com/#/open-business-document/access-guide/157/54222
 

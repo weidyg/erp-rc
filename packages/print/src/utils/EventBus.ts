@@ -10,6 +10,7 @@ export type EventCallback<T extends EventData> = (rawData: T) => void;
 export class EventBus {
   private events: { [key: string]: { id?: string, fn: Function }[] } = {};
   private readonly eventNames = {
+    close: 'close',
     error: 'error',
     print: 'print',
     notifyPrintResult: 'notifyPrintResult',
@@ -17,7 +18,7 @@ export class EventBus {
   } as const;
 
   public emit<T extends EventData>(eventName: string, data: T) {
-    console.log('【EventBus】emit', eventName, data, this.events);
+    // console.log('【EventBus】emit', eventName, data, this.events);
     this.events[eventName]?.forEach((item) => item?.fn(data));
   }
   public on<T extends EventData>(eventName: string, fn: EventCallback<T>, id?: string) {
@@ -26,16 +27,16 @@ export class EventBus {
       let events = this.events[eventName]?.filter((f) => f.id != id);
       events.push({ id, fn });
       this.events[eventName] = events;
-      console.log('【EventBus】replace '+id, eventName, this.events);
+      // console.log('【EventBus】replace ' + id, eventName, this.events);
     }
     else if (!this.events[eventName].some((s) => s.fn == fn)) {
       this.events[eventName].push({ id, fn });
-      console.log('【EventBus】push', eventName, this.events);
+      // console.log('【EventBus】push', eventName, this.events);
     }
 
   }
   public off<T extends EventData>(eventName: string, fn: EventCallback<T>, id?: string) {
-    console.log('【EventBus】off', eventName, this.events);
+    // console.log('【EventBus】off', eventName, this.events);
     if (this.events[eventName]) {
       let events = this.events[eventName]?.filter((f) => f.fn != fn);
       if (id) { events = this.events[eventName]?.filter((f) => f.id != id); }
@@ -48,6 +49,17 @@ export class EventBus {
   }
 
   // Convenience methods for specific events
+
+  public onClose(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
+    this.on(this.eventNames.error + type, fun, id);
+  }
+  public offClose(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
+    this.off(this.eventNames.error + type, fun, id);
+  }
+  public emitClose(type: PrintClientType, data: EventData) {
+    this.emit(this.eventNames.error + type, data);
+  }
+
   public onError(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
     this.on(this.eventNames.error + type, fun, id);
   }

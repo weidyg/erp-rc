@@ -27,14 +27,8 @@ import {
   KuaishouPrintContent,
   ConnectParams,
 } from '../../types';
+import { prinClientInfos } from '../../utils/prinClientInfos';
 
-export const prinClientInfos: Record<PrintClientType, { name: string; wsUrl: string; wssUrl?: string }> = {
-  ['cainiao']: { name: '菜鸟', wsUrl: 'ws://localhost:13528', wssUrl: 'wss://localhost:13529' },
-  ['doudian']: { name: '抖店', wsUrl: 'ws://localhost:13888', wssUrl: 'wss://localhost:13999' },
-  ['pinduoduo']: { name: '拼多多', wsUrl: 'ws://localhost:5000', wssUrl: 'ws://localhost:18653' },
-  ['kuaishou']: { name: ' 快手', wsUrl: 'ws://localhost:16888/ks/printer', wssUrl: 'wss://localhost:16889/ks/printer' },
-  ['jingdong']: { name: '京东', wsUrl: 'ws://localhost:9113', wssUrl: '' },
-};
 
 class PrintService {
   private _sockets: { [key: string]: WebSocket | undefined } = {};
@@ -62,26 +56,26 @@ class PrintService {
   }
 
   public connect(params: ConnectParams) {
-    const { requestID, type, onOpen, onError } = params || {};
-    let errorFun = (rawData: EventData): void => {
-      if (rawData?.requestID == 'ws_close'
-        || rawData?.requestID == 'ws_error') {
-        onError?.(rawData);
+    const { id, type, onOpen, onClose } = params || {};
+    let closeFun = (rawData: EventData): void => {
+      if (rawData?.requestID == 'ws_close') {
+        onClose?.();
         offEventBus();
       }
     };
+    const _id = id || `print-client-${type}`;
+    this._eventBus.onClose(type, closeFun, _id);
     let offEventBus = () => {
-        this._eventBus.offError(type, errorFun, requestID);
+      this._eventBus.offClose(type, closeFun, _id);
     };
-    this._eventBus.onError(type, errorFun, requestID);
 
     let socket = this._sockets[type];
     if (!socket) {
       socket = this.openWebSocket(type, () => {
-        onOpen?.(socket);
+        onOpen?.();
       });
     } else {
-      onOpen?.(socket);
+      onOpen?.();
     }
   }
 
@@ -105,18 +99,18 @@ class PrintService {
     const { name, wsUrl } = prinClientInfos[type] || {};
     const socket = new WebSocket(wsUrl);
     socket.onopen = (ev: Event) => {
-      console.log(`【WebSocket】${type} Client open`, ev);
+      // console.log(`【WebSocket】${type} Client open`, ev);
       this._sockets[type] = socket;
       onopen?.(ev);
     };
     socket.onclose = (ev: CloseEvent) => {
-      console.log(`【WebSocket】${type} Client closed`, ev);
+      // console.log(`【WebSocket】${type} Client closed`, ev);
       this._sockets[type] = undefined;
-      this._eventBus.emitError(type, { requestID: 'ws_close', msg: `${name}打印控件已关闭!` });
+      this._eventBus.emitClose(type, { requestID: 'ws_close', msg: `${name}打印控件已关闭!` });
       onclose?.(ev);
     };
     socket.onmessage = (ev: MessageEvent) => {
-      console.log(`【WebSocket】${type} Client received a message`, ev.data);
+      // console.log(`【WebSocket】${type} Client received a message`, ev.data);
       const data = JSON.parse(ev.data) || {};
       switch (type) {
         case 'jingdong':
@@ -150,7 +144,7 @@ class PrintService {
       }
     };
     socket.onerror = (ev: Event) => {
-      console.log(`【WebSocket】${type} Client error`, ev);
+      // console.log(`【WebSocket】${type} Client error`, ev);
       this._sockets[type] = undefined;
       this._eventBus.emitError(type, { requestID: 'ws_error', msg: `连接${name}打印控件失败!` });
     };
