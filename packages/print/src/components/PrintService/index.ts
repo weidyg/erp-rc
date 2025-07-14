@@ -62,16 +62,19 @@ class PrintService {
   }
 
   public connect(params: ConnectParams) {
-    const { type, onOpen, onError } = params || {};
+    const { requestID, type, onOpen, onError } = params || {};
     let errorFun = (rawData: EventData): void => {
       if (rawData?.requestID == 'ws_close'
         || rawData?.requestID == 'ws_error') {
         onError?.(rawData);
-        this._eventBus.offError(type, errorFun);
+        offEventBus();
       }
     };
-    this._eventBus.onError(type, errorFun);
-    
+    let offEventBus = () => {
+        this._eventBus.offError(type, errorFun, requestID);
+    };
+    this._eventBus.onError(type, errorFun, requestID);
+
     let socket = this._sockets[type];
     if (!socket) {
       socket = this.openWebSocket(type, () => {
@@ -80,7 +83,6 @@ class PrintService {
     } else {
       onOpen?.(socket);
     }
-    return socket;
   }
 
   private send(type: PrintClientType, request: any) {

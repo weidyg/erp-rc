@@ -36,6 +36,7 @@ export type PrintParams = {
 };
 
 export type ConnectParams = {
+  requestID?: string;
   type: PrintClientType;
   onOpen: (socket?: WebSocket) => void;
   onError: (rawData: any) => void;

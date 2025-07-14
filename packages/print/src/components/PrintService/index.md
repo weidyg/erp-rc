@@ -13,6 +13,7 @@ apiHeader:
 ### 基本使用
 
 <code src="./_demos/basic.tsx" ></code>
+<code src="./_demos/connect.tsx" ></code>
 
 ## API
 
