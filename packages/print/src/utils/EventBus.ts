@@ -1,4 +1,4 @@
-import { PrintClientType } from "../types";
+import { PrintClientType } from '../types';
 
 export type EventData = {
   requestID: string;
@@ -8,7 +8,7 @@ export type EventData = {
 export type EventCallback<T extends EventData> = (rawData: T) => void;
 
 export class EventBus {
-  private events: { [key: string]: { id?: string, fn: Function }[] } = {};
+  private events: { [key: string]: { id?: string; fn: Function }[] } = {};
   private readonly eventNames = {
     close: 'close',
     error: 'error',
@@ -28,18 +28,18 @@ export class EventBus {
       events.push({ id, fn });
       this.events[eventName] = events;
       // console.log('【EventBus】replace ' + id, eventName, this.events);
-    }
-    else if (!this.events[eventName].some((s) => s.fn == fn)) {
+    } else if (!this.events[eventName].some((s) => s.fn == fn)) {
       this.events[eventName].push({ id, fn });
       // console.log('【EventBus】push', eventName, this.events);
     }
-
   }
   public off<T extends EventData>(eventName: string, fn: EventCallback<T>, id?: string) {
     // console.log('【EventBus】off', eventName, this.events);
     if (this.events[eventName]) {
       let events = this.events[eventName]?.filter((f) => f.fn != fn);
-      if (id) { events = this.events[eventName]?.filter((f) => f.id != id); }
+      if (id) {
+        events = this.events[eventName]?.filter((f) => f.id != id);
+      }
       if (!events?.length) {
         delete this.events[eventName];
       } else {

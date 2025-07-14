@@ -5,13 +5,13 @@ export default () => {
   const prinClients = useMemo(() => {
     return Object.keys(prinClientInfos).map((key) => {
       const value = key as PrintClientType;
-      return { label: prinClientInfos[value].name, value, };
+      return { label: prinClientInfos[value].name, value };
     });
   }, []);
 
   useEffect(() => {
     connectPrinClient();
-  }, [])
+  }, []);
 
   // const key = useMemo(() => printService.getUuid(8, 16), []);
   const connectPrinClient = useCallback(() => {
@@ -48,7 +48,6 @@ export default () => {
       },
     });
   };
-
 
   return (
     <div style={{ padding: '20px' }}>
