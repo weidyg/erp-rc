@@ -52,7 +52,9 @@ export class EventBus {
   // Convenience methods for specific events
   public onOpen(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
     this.on(this.eventNames.open + type, fun, id);
-    return () => { this.off(this.eventNames.close + type, fun, id); };
+    return () => {
+      this.off(this.eventNames.close + type, fun, id);
+    };
   }
   public emitOpen(type: PrintClientType, data: EventData) {
     this.emit(this.eventNames.open + type, data);
@@ -60,7 +62,9 @@ export class EventBus {
 
   public onClose(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
     this.on(this.eventNames.close + type, fun, id);
-    return () => { this.off(this.eventNames.close + type, fun, id); };
+    return () => {
+      this.off(this.eventNames.close + type, fun, id);
+    };
   }
   public emitClose(type: PrintClientType, data: EventData) {
     this.emit(this.eventNames.error + type, data);
@@ -68,7 +72,9 @@ export class EventBus {
 
   public onError(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
     this.on(this.eventNames.error + type, fun, id);
-    return () => { this.off(this.eventNames.error + type, fun, id); };
+    return () => {
+      this.off(this.eventNames.error + type, fun, id);
+    };
   }
   public emitError(type: PrintClientType, data: EventData) {
     this.emit(this.eventNames.error + type, data);
@@ -76,7 +82,9 @@ export class EventBus {
 
   public onGetPrinters(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
     this.on(this.eventNames.getPrinters + type, fun, id);
-    return () => { this.off(this.eventNames.getPrinters + type, fun, id); };
+    return () => {
+      this.off(this.eventNames.getPrinters + type, fun, id);
+    };
   }
   public emitGetPrinters(type: PrintClientType, data: EventData) {
     this.emit(this.eventNames.getPrinters + type, data);
@@ -84,7 +92,9 @@ export class EventBus {
 
   public onPrint(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
     this.on(this.eventNames.print + type, fun, id);
-    return () => { this.off(this.eventNames.print + type, fun, id); };
+    return () => {
+      this.off(this.eventNames.print + type, fun, id);
+    };
   }
   public emitPrint(type: PrintClientType, data: EventData) {
     this.emit(this.eventNames.print + type, data);
@@ -92,7 +102,9 @@ export class EventBus {
 
   public onNotifyPrintResult(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
     this.on(this.eventNames.notifyPrintResult + type, fun, id);
-    return () => { this.off(this.eventNames.notifyPrintResult + type, fun, id); };
+    return () => {
+      this.off(this.eventNames.notifyPrintResult + type, fun, id);
+    };
   }
   public emitNotifyPrintResult(type: PrintClientType, data: EventData) {
     this.emit(this.eventNames.notifyPrintResult + type, data);

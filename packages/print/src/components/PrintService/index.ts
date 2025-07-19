@@ -67,7 +67,9 @@ class PrintService {
 
   public connect(type: PrintClientType) {
     let socket = this._sockets[type];
-    if (!socket) { socket = this.connectWebSocket(type); }
+    if (!socket) {
+      socket = this.connectWebSocket(type);
+    }
   }
 
   private connectWebSocket(
@@ -75,7 +77,7 @@ class PrintService {
     onopen?: (ev: Event) => void,
     onclose?: (ev: CloseEvent) => void,
     onmessage?: (ev: MessageEvent) => void,
-    onerror?: (ev: Event) => void
+    onerror?: (ev: Event) => void,
   ) {
     const { name, wsUrl } = prinClientInfos[type] || {};
     const socket = new WebSocket(wsUrl);
@@ -232,8 +234,9 @@ class PrintService {
               name: sender.name,
               mobile: sender.mobile,
               phone: sender.phone,
-              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${sender.address ?? ''
-                }`,
+              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${
+                sender.address ?? ''
+              }`,
             };
             content.addData = content.addData || {};
             content.addData.sender = _sender;
@@ -270,16 +273,16 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                    name: sender.name,
-                    mobile: sender.mobile,
-                    phone: sender.phone,
-                    address: {
-                      province: sender.province,
-                      city: sender.city,
-                      district: sender.district,
-                      detail: `${sender.street ?? ''}${sender.address ?? ''}`,
-                    },
-                  }
+                      name: sender.name,
+                      mobile: sender.mobile,
+                      phone: sender.phone,
+                      address: {
+                        province: sender.province,
+                        city: sender.city,
+                        district: sender.district,
+                        detail: `${sender.street ?? ''}${sender.address ?? ''}`,
+                      },
+                    }
                   : addData.sender,
               },
               ...extraProperties,
@@ -327,18 +330,18 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                    address: {
-                      provinceName: sender.province,
-                      cityName: sender.city,
-                      districtName: sender.district,
-                      streetName: sender.street,
-                      detailAddress: sender.address,
-                    },
-                    contact: {
-                      name: sender.name,
-                      mobile: sender.mobile,
-                    },
-                  }
+                      address: {
+                        provinceName: sender.province,
+                        cityName: sender.city,
+                        districtName: sender.district,
+                        streetName: sender.street,
+                        detailAddress: sender.address,
+                      },
+                      contact: {
+                        name: sender.name,
+                        mobile: sender.mobile,
+                      },
+                    }
                   : addData.senderInfo,
               },
               ...extraProperties,
@@ -386,17 +389,17 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                    address: {
-                      province: sender.province,
-                      city: sender.city,
-                      district: sender.district,
-                      town: sender.street,
-                      detail: sender.address,
-                    },
-                    name: sender.name,
-                    mobile: sender.mobile,
-                    phone: sender.phone,
-                  }
+                      address: {
+                        province: sender.province,
+                        city: sender.city,
+                        district: sender.district,
+                        town: sender.street,
+                        detail: sender.address,
+                      },
+                      name: sender.name,
+                      mobile: sender.mobile,
+                      phone: sender.phone,
+                    }
                   : addData.sender,
               },
               ...extraProperties,
@@ -444,18 +447,18 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                    address: {
-                      provinceName: sender.province,
-                      cityName: sender.city,
-                      districtName: sender.district,
-                      streetName: sender.street,
-                      detailAddress: sender.address,
-                    },
-                    contact: {
-                      name: sender.name,
-                      mobile: sender.mobile,
-                    },
-                  }
+                      address: {
+                        provinceName: sender.province,
+                        cityName: sender.city,
+                        districtName: sender.district,
+                        streetName: sender.street,
+                        detailAddress: sender.address,
+                      },
+                      contact: {
+                        name: sender.name,
+                        mobile: sender.mobile,
+                      },
+                    }
                   : addData.senderInfo,
               },
               ...extraProperties,
