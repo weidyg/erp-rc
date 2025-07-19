@@ -9,14 +9,6 @@ export type EventCallback<T extends EventData> = (rawData: T) => void;
 
 export class EventBus {
   private events: { [key: string]: { id?: string; fn: Function }[] } = {};
-  private readonly eventNames = {
-    open: 'open',
-    close: 'close',
-    error: 'error',
-    print: 'print',
-    notifyPrintResult: 'notifyPrintResult',
-    getPrinters: 'getPrinters',
-  } as const;
 
   public emit<T extends EventData>(eventName: string, data: T) {
     // console.log('【EventBus】emit', eventName, data, this.events);
@@ -49,64 +41,65 @@ export class EventBus {
     }
   }
 
+
   // Convenience methods for specific events
   public onOpen(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
-    this.on(this.eventNames.open + type, fun, id);
-    return () => {
-      this.off(this.eventNames.close + type, fun, id);
-    };
+    const eventName = `open_${type}`;
+    this.on(eventName, fun, id);
+    return () => { this.off(eventName, fun, id); };
   }
   public emitOpen(type: PrintClientType, data: EventData) {
-    this.emit(this.eventNames.open + type, data);
+    const eventName = `open_${type}`;
+    this.emit(eventName, data);
   }
 
   public onClose(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
-    this.on(this.eventNames.close + type, fun, id);
-    return () => {
-      this.off(this.eventNames.close + type, fun, id);
-    };
+    const eventName = `close_${type}`;
+    this.on(eventName, fun, id);
+    return () => { this.off(eventName, fun, id); };
   }
   public emitClose(type: PrintClientType, data: EventData) {
-    this.emit(this.eventNames.error + type, data);
+    const eventName = `close_${type}`;
+    this.emit(eventName, data);
   }
 
   public onError(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
-    this.on(this.eventNames.error + type, fun, id);
-    return () => {
-      this.off(this.eventNames.error + type, fun, id);
-    };
+    const eventName = `error_${type}`;
+    this.on(eventName, fun, id);
+    return () => { this.off(eventName, fun, id); };
   }
   public emitError(type: PrintClientType, data: EventData) {
-    this.emit(this.eventNames.error + type, data);
+    const eventName = `error_${type}`;
+    this.emit(eventName, data);
   }
 
   public onGetPrinters(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
-    this.on(this.eventNames.getPrinters + type, fun, id);
-    return () => {
-      this.off(this.eventNames.getPrinters + type, fun, id);
-    };
+    const eventName = `getPrinters_${type}`;
+    this.on(eventName, fun, id);
+    return () => { this.off(eventName, fun, id); };
   }
   public emitGetPrinters(type: PrintClientType, data: EventData) {
-    this.emit(this.eventNames.getPrinters + type, data);
+    const eventName = `getPrinters_${type}`;
+    this.emit(eventName, data);
   }
 
   public onPrint(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
-    this.on(this.eventNames.print + type, fun, id);
-    return () => {
-      this.off(this.eventNames.print + type, fun, id);
-    };
+    const eventName = `print_${type}`;
+    this.on(eventName, fun, id);
+    return () => { this.off(eventName, fun, id); };
   }
   public emitPrint(type: PrintClientType, data: EventData) {
-    this.emit(this.eventNames.print + type, data);
+    const eventName = `print_${type}`;
+    this.emit(eventName, data);
   }
 
   public onNotifyPrintResult(type: PrintClientType, fun: EventCallback<EventData>, id?: string) {
-    this.on(this.eventNames.notifyPrintResult + type, fun, id);
-    return () => {
-      this.off(this.eventNames.notifyPrintResult + type, fun, id);
-    };
+    const eventName = `notifyPrintResult_${type}`;
+    this.on(eventName, fun, id);
+    return () => { this.off(eventName, fun, id); };
   }
   public emitNotifyPrintResult(type: PrintClientType, data: EventData) {
-    this.emit(this.eventNames.notifyPrintResult + type, data);
+    const eventName = `notifyPrintResult_${type}`;
+    this.emit(eventName, data);
   }
 }
