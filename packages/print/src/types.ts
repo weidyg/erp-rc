@@ -35,14 +35,14 @@ export type PrintParams = {
   onError: (data: PrintError, rawData: any) => void;
 };
 
-export type ConnectParams = {
-  id?: string;
-  type: PrintClientType;
-  onOpen: () => void;
-  onClose: () => void;
-};
-//https://open.jdl.com/#/open-business-document/access-guide/157/54222
+// export type ConnectParams = {
+//   id?: string;
+//   type: PrintClientType;
+//   onOpen: () => void;
+//   onClose: () => void;
+// };
 
+//https://open.jdl.com/#/open-business-document/access-guide/157/54222
 export type JingdongPrintResult = {
   requestID: string; //冗余字段
   key: string;

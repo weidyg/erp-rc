@@ -35,18 +35,18 @@ export default () => {
     }
   };
   const connect = (value: PrintClientType) => {
-    printService.connect({
-      type: value,
-      onOpen: () => {
-        setConnectedClients((prev) => [...prev, value]);
-        console.log(`onOpen__${value}_${JSON.stringify(connectedClients)}`);
-      },
-      onClose: () => {
-        setConnectedClients((prev) => prev.filter((t) => t !== value));
-        console.log(`onClose  ${value}`);
-        reConnect(value);
-      },
-    });
+    // printService.connect({
+    //   type: value,
+    //   onOpen: () => {
+    //     setConnectedClients((prev) => [...prev, value]);
+    //     console.log(`onOpen__${value}_${JSON.stringify(connectedClients)}`);
+    //   },
+    //   onClose: () => {
+    //     setConnectedClients((prev) => prev.filter((t) => t !== value));
+    //     console.log(`onClose  ${value}`);
+    //     reConnect(value);
+    //   },
+    // });
   };
 
   return (
