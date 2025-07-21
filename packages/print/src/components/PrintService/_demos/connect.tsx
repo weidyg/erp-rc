@@ -1,68 +1,82 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { prinClientInfos, PrintClientType, printService } from '@erp-rc/print';
+import { Button } from 'antd';
 export default () => {
-  const [connectedClients, setConnectedClients] = useState<PrintClientType[]>([]);
-  const prinClients = useMemo(() => {
-    return Object.keys(prinClientInfos).map((key) => {
-      const value = key as PrintClientType;
-      return { label: prinClientInfos[value].name, value };
-    });
-  }, []);
+  const printers = useRef<{ [x: string]: string[] }>({});
+  const [clientStatus, setClientStatus] = useState<{ [x: string]: boolean }>({});
+  const clientTypes = Object.keys(prinClientInfos) as PrintClientType[];
+  const _eventBus = printService._eventBus;
 
   useEffect(() => {
-    connectPrinClient();
+    const connection = onEventBus();
+    return () => {
+      connection.offEventBus();
+    };
   }, []);
 
-  // const key = useMemo(() => printService.getUuid(8, 16), []);
-  const connectPrinClient = useCallback(() => {
-    for (let index = 0; index < prinClients.length; index++) {
-      const { label, value } = prinClients[index];
-      // console.log(`Connecting1 to ${value} ${JSON.stringify(connectedClients.current)}...`);
-      // if (connectedClients.current.includes(value)) { continue; }
-      console.log(`Connecting to ${value}...`);
-      connect(value);
+  const onEventBus = useCallback(() => {
+    const list: Function[] = [];
+    for (const type of clientTypes) {
+      const offOpen = _eventBus.onOpen(type, () => handleOpen(type), `${type}_open`);
+      const offClose = _eventBus.onClose(type, () => handleClose(type), `${type}_close`);
+      list.push(offOpen, offClose);
     }
+    return {
+      offEventBus: () => {
+        list.forEach(off => off());
+      }
+    };
   }, []);
 
-  const waitConnects = useRef<PrintClientType[]>([]);
-  const reConnect = (value: PrintClientType) => {
-    if (!waitConnects.current.includes(value)) {
-      waitConnects.current = [...waitConnects.current, value];
-      setTimeout(() => {
-        waitConnects.current = waitConnects.current.filter((t) => t !== value);
-        connect(value);
-      }, 5000);
-    }
-  };
-  const connect = (value: PrintClientType) => {
-    // printService.connect({
-    //   type: value,
-    //   onOpen: () => {
-    //     setConnectedClients((prev) => [...prev, value]);
-    //     console.log(`onOpen__${value}_${JSON.stringify(connectedClients)}`);
-    //   },
-    //   onClose: () => {
-    //     setConnectedClients((prev) => prev.filter((t) => t !== value));
-    //     console.log(`onClose  ${value}`);
-    //     reConnect(value);
-    //   },
-    // });
-  };
+  const handleOpen = useCallback((type: PrintClientType) => {
+    console.log('handleOpen', type);
+    setClientStatus((prev) => ({ ...prev, [type]: true, }));
+  }, []);
+  const handleClose = useCallback((type: PrintClientType) => {
+    console.log('handleClose', type);
+    setClientStatus((prev) => ({ ...prev, [type]: false, }));
+    printers.current[type] = [];
+  }, []);
+
+  const getPrinters = useCallback(async (type: PrintClientType) => {
+    return await new Promise<string[]>((resolve, reject) => {
+      if (!type) { reject('getPrinters type undefined'); return; }
+      if (printers.current[type]?.length > 0) {
+        resolve(printers.current[type]);
+      } else {
+        printService.getPrinters({
+          type: type,
+          onSuccess: function (data, rawData) {
+            printers.current[type] = data?.printers ?? [];
+            resolve(printers.current[type]);
+          },
+          onError: function (data, rawData) {
+            console.log('getPrinters onError', data, rawData);
+            printers.current[type] = [];
+            reject(data?.msg);
+          }
+        });
+      }
+    });
+  }, []);
 
   return (
     <div style={{ padding: '20px' }}>
       {/* {JSON.stringify(clients)} */}
-      {JSON.stringify(connectedClients)}
-      {prinClients.map((client) => (
-        <div key={client.value} style={{ marginBottom: '10px' }}>
-          {client.label}
-          {connectedClients.includes(client.value) ? (
+      {JSON.stringify(clientStatus)}
+      {Object.keys(prinClientInfos).map((type) => (
+        <div key={type} style={{ marginBottom: '10px' }}>
+          {prinClientInfos[type as PrintClientType].name}
+          {clientStatus[type] ? (
             <span style={{ marginLeft: '10px', color: 'green' }}>Connected</span>
           ) : (
             <span style={{ marginLeft: '10px', color: 'red' }}>Not Connected</span>
           )}
         </div>
       ))}
+      <Button onClick={() => { getPrinters('cainiao'); }}>
+        获取打印机
+      </Button>
     </div>
   );
 };
