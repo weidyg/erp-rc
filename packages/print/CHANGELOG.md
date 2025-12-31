@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/weidyg/erp-rc/compare/@erp-rc/print@1.2.3...@erp-rc/print@1.2.4) (2025-12-31)
+
+**Note:** Version bump only for package @erp-rc/print
+
 ## [1.2.3](https://github.com/weidyg/erp-rc/compare/@erp-rc/print@1.2.2...@erp-rc/print@1.2.3) (2025-07-19)
 
 **Note:** Version bump only for package @erp-rc/print
