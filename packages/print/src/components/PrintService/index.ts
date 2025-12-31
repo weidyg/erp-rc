@@ -52,7 +52,6 @@ class PrintService {
     const request = this.getPrintRequest(_requestID, params);
     this.send(type, request);
   }
-
   public send(type: PrintClientType, request: any) {
     const data = JSON.stringify(request);
     let socket = this._sockets[type];
@@ -64,14 +63,12 @@ class PrintService {
       socket.send(data);
     }
   }
-
   public connect(type: PrintClientType) {
     let socket = this._sockets[type];
     if (!socket) {
       socket = this.connectWebSocket(type);
     }
   }
-
   private connectWebSocket(
     type: PrintClientType,
     onopen?: (ev: Event) => void,
@@ -155,7 +152,6 @@ class PrintService {
       }
     }
   }
-
   private getPrintType(type: PrintClientType, documents: CainiaoPrintDocument[], printType?: string): string | undefined {
     if (type == 'cainiao') {
       if (printType) { return printType; }
@@ -168,7 +164,6 @@ class PrintService {
     }
     return undefined;
   }
-
   private getPrintRequest(requestID: string, params: PrintParams) {
     const { type, printer, preview = false, previewType, documents: _documents = [], printType, ...rest } = params || {};
     const clientDocuments = this.toClientDocuments(type, _documents);
@@ -501,10 +496,6 @@ class PrintService {
   private isWaybillDocument(doc: any): boolean {
     return !!(doc?.standardArea?.templateURL || doc?.customArea?.templateURL);
   }
-  private isPdfFileByExtension(filename: string): boolean {
-    const extension = filename?.toLowerCase()?.split('.')?.pop();
-    return extension === 'pdf';
-  }
   private registerEventBus_getPrinters(requestID: string, params: GetPrintersParams) {
     const { type, onSuccess, onError } = params || {};
     let errorFun = (rawData: EventData): void => {
@@ -718,6 +709,10 @@ class PrintService {
       }
     }
     return uuid.join('');
+  }
+  private isPdfFileByExtension(filename: string): boolean {
+    const extension = filename?.toLowerCase()?.split('.')?.pop();
+    return extension === 'pdf';
   }
 }
 
