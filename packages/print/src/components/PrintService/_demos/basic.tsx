@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Button,
   Checkbox,
+  Input,
   message,
   notification,
   Segmented,
@@ -149,7 +150,11 @@ export default () => {
       },
     });
   }
+  const [editableJson, setEditableJson] = useState<string>('');
 
+  useEffect(() => {
+    setEditableJson(JSON.stringify(getDocs(), null, 2));
+  }, [prinClientType, useCommonFormat]);
   return (
     <div style={{ padding: '20px' }}>
       {messageHolder}
@@ -192,29 +197,25 @@ export default () => {
           </Checkbox>
           <Button
             onClick={async () => {
-              const docs = getDocs();
-              if (docs) {
-                print(docs as any);
+              try {
+                if (editableJson) {
+                  print(JSON.parse(editableJson));
+                }
+              } catch (error) {
+                messageApi.error({ content: 'JSON 解析错误' });
               }
             }}
           >
             打印
           </Button>
         </Space>
-        <Typography.Text>
-          <pre>
-            <Typography.Paragraph
-              ellipsis={{
-                rows: 2,
-                expandable: 'collapsible',
-                symbol: (expanded) => (expanded ? '收起' : '展开'),
-              }}
-            >
-              {JSON.stringify(getDocs(), null, 2)}
-            </Typography.Paragraph>
-          </pre>
-        </Typography.Text>
       </Space>
+      <Input.TextArea
+        rows={20}
+        value={editableJson}
+        onChange={(e) => setEditableJson(e.target.value)}
+        style={{ fontFamily: 'monospace', fontSize: '12px' }}
+      />
       <br />
       <br />
       <Timeline items={printMsgs} mode="left" />

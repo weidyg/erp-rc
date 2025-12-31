@@ -49,7 +49,7 @@ class PrintService {
       return;
     }
     this.registerEventBus_print(_requestID, params);
-    const request = this.getPrintRequest(type, _requestID, params);
+    const request = this.getPrintRequest(_requestID, params);
     this.send(type, request);
   }
 
@@ -130,7 +130,7 @@ class PrintService {
     };
     socket.onerror = (ev: Event) => {
       onerror?.(ev);
-      // console.log(`【WebSocket】${type} Client error`, ev);
+      console.log(`【WebSocket】${type} Client error`, ev);
       this._sockets[type] = undefined;
       this._eventBus.emitError(type, { requestID: 'ws_error', msg: `连接${name}打印控件失败!` });
     };
@@ -155,8 +155,22 @@ class PrintService {
       }
     }
   }
-  private getPrintRequest(type: PrintClientType, requestID: string, params: PrintParams) {
-    const { printer, preview = false, previewType, documents: _documents = [] } = params || {};
+
+  private getPrintType(type: PrintClientType, documents: CainiaoPrintDocument[], printType?: string): string | undefined {
+    if (type == 'cainiao') {
+      if (printType) { return printType; }
+      const isPdf = documents?.every((document: any) => {
+        return document.contents?.every((content: any) => {
+          return this.isPdfFileByExtension(content.templateURL);
+        });
+      });
+      return isPdf ? 'dirctPrint' : undefined;
+    }
+    return undefined;
+  }
+
+  private getPrintRequest(requestID: string, params: PrintParams) {
+    const { type, printer, preview = false, previewType, documents: _documents = [], printType, ...rest } = params || {};
     const clientDocuments = this.toClientDocuments(type, _documents);
     const documents = this.copyDocuments(clientDocuments) as any[];
     switch (type) {
@@ -172,7 +186,8 @@ class PrintService {
         };
         return request;
       }
-      default:
+      default: {
+        const _printType = this.getPrintType(type, clientDocuments as any, printType);
         const request: PrintRequest = {
           cmd: 'print',
           version: '1.0',
@@ -182,10 +197,13 @@ class PrintService {
             printer: printer,
             preview: preview,
             previewType: previewType,
+            printType: _printType,
             documents: documents,
           },
+          ...rest
         };
         return request;
+      }
     }
   }
   private copyDocuments(documents: PrintDocument[]) {
@@ -234,9 +252,8 @@ class PrintService {
               name: sender.name,
               mobile: sender.mobile,
               phone: sender.phone,
-              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${
-                sender.address ?? ''
-              }`,
+              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${sender.address ?? ''
+                }`,
             };
             content.addData = content.addData || {};
             content.addData.sender = _sender;
@@ -273,16 +290,16 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                      name: sender.name,
-                      mobile: sender.mobile,
-                      phone: sender.phone,
-                      address: {
-                        province: sender.province,
-                        city: sender.city,
-                        district: sender.district,
-                        detail: `${sender.street ?? ''}${sender.address ?? ''}`,
-                      },
-                    }
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                    address: {
+                      province: sender.province,
+                      city: sender.city,
+                      district: sender.district,
+                      detail: `${sender.street ?? ''}${sender.address ?? ''}`,
+                    },
+                  }
                   : addData.sender,
               },
               ...extraProperties,
@@ -330,18 +347,18 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                      address: {
-                        provinceName: sender.province,
-                        cityName: sender.city,
-                        districtName: sender.district,
-                        streetName: sender.street,
-                        detailAddress: sender.address,
-                      },
-                      contact: {
-                        name: sender.name,
-                        mobile: sender.mobile,
-                      },
-                    }
+                    address: {
+                      provinceName: sender.province,
+                      cityName: sender.city,
+                      districtName: sender.district,
+                      streetName: sender.street,
+                      detailAddress: sender.address,
+                    },
+                    contact: {
+                      name: sender.name,
+                      mobile: sender.mobile,
+                    },
+                  }
                   : addData.senderInfo,
               },
               ...extraProperties,
@@ -389,17 +406,17 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                      address: {
-                        province: sender.province,
-                        city: sender.city,
-                        district: sender.district,
-                        town: sender.street,
-                        detail: sender.address,
-                      },
-                      name: sender.name,
-                      mobile: sender.mobile,
-                      phone: sender.phone,
-                    }
+                    address: {
+                      province: sender.province,
+                      city: sender.city,
+                      district: sender.district,
+                      town: sender.street,
+                      detail: sender.address,
+                    },
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                  }
                   : addData.sender,
               },
               ...extraProperties,
@@ -447,18 +464,18 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                      address: {
-                        provinceName: sender.province,
-                        cityName: sender.city,
-                        districtName: sender.district,
-                        streetName: sender.street,
-                        detailAddress: sender.address,
-                      },
-                      contact: {
-                        name: sender.name,
-                        mobile: sender.mobile,
-                      },
-                    }
+                    address: {
+                      provinceName: sender.province,
+                      cityName: sender.city,
+                      districtName: sender.district,
+                      streetName: sender.street,
+                      detailAddress: sender.address,
+                    },
+                    contact: {
+                      name: sender.name,
+                      mobile: sender.mobile,
+                    },
+                  }
                   : addData.senderInfo,
               },
               ...extraProperties,
@@ -483,6 +500,10 @@ class PrintService {
   }
   private isWaybillDocument(doc: any): boolean {
     return !!(doc?.standardArea?.templateURL || doc?.customArea?.templateURL);
+  }
+  private isPdfFileByExtension(filename: string): boolean {
+    const extension = filename?.toLowerCase()?.split('.')?.pop();
+    return extension === 'pdf';
   }
   private registerEventBus_getPrinters(requestID: string, params: GetPrintersParams) {
     const { type, onSuccess, onError } = params || {};
