@@ -23,24 +23,27 @@ export default () => {
     }
     return {
       offEventBus: () => {
-        list.forEach(off => off());
-      }
+        list.forEach((off) => off());
+      },
     };
   }, []);
 
   const handleOpen = useCallback((type: PrintClientType) => {
     console.log('handleOpen', type);
-    setClientStatus((prev) => ({ ...prev, [type]: true, }));
+    setClientStatus((prev) => ({ ...prev, [type]: true }));
   }, []);
   const handleClose = useCallback((type: PrintClientType) => {
     console.log('handleClose', type);
-    setClientStatus((prev) => ({ ...prev, [type]: false, }));
+    setClientStatus((prev) => ({ ...prev, [type]: false }));
     printers.current[type] = [];
   }, []);
 
   const getPrinters = useCallback(async (type: PrintClientType) => {
     return await new Promise<string[]>((resolve, reject) => {
-      if (!type) { reject('getPrinters type undefined'); return; }
+      if (!type) {
+        reject('getPrinters type undefined');
+        return;
+      }
       if (printers.current[type]?.length > 0) {
         resolve(printers.current[type]);
       } else {
@@ -54,7 +57,7 @@ export default () => {
             console.log('getPrinters onError', data, rawData);
             printers.current[type] = [];
             reject(data?.msg);
-          }
+          },
         });
       }
     });
@@ -74,7 +77,11 @@ export default () => {
           )}
         </div>
       ))}
-      <Button onClick={() => { getPrinters('cainiao'); }}>
+      <Button
+        onClick={() => {
+          getPrinters('cainiao');
+        }}
+      >
         获取打印机
       </Button>
     </div>

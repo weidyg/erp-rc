@@ -29,7 +29,7 @@ export type PrintParams = {
   printer: string;
   preview?: boolean;
   previewType?: 'pdf' | 'image';
-  printType?: 'dirctPrint',//菜鸟
+  printType?: 'dirctPrint'; //菜鸟
   onPrint: (data: PrintStatus, rawData: any) => void;
   onRendered: (data: PrintDocStatus[], rawData: any) => void;
   onPrinted: (data: PrintDocStatus[], rawData: any) => void;
