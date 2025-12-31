@@ -10,7 +10,6 @@ import {
   Space,
   Timeline,
   TimelineItemProps,
-  Typography,
 } from 'antd';
 import { prinClientInfos, printService } from '@erp-rc/print';
 import { PrintClientType, PrintDocStatus, PrintError, PrintStatus } from '@erp-rc/print';

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { prinClientInfos, PrintClientType, printService } from '@erp-rc/print';
 import { Button } from 'antd';
 export default () => {
