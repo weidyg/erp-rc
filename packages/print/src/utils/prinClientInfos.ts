@@ -6,4 +6,5 @@ export const prinClientInfos: Record<PrintClientType, { name: string; wsUrl: str
   ['pinduoduo']: { name: '拼多多', wsUrl: 'ws://localhost:5000', wssUrl: 'ws://localhost:18653' },
   ['kuaishou']: { name: ' 快手', wsUrl: 'ws://localhost:16888/ks/printer', wssUrl: 'wss://localhost:16889/ks/printer' },
   ['jingdong']: { name: '京东', wsUrl: 'ws://localhost:9113', wssUrl: '' },
+  ['xiaohongshu']: { name: '小红书', wsUrl: 'ws://localhost:10818', wssUrl: '' },
 };

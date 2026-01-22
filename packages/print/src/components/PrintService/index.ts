@@ -25,6 +25,8 @@ import {
   DoudianPrintContent,
   PinduoduoPrintContent,
   KuaishouPrintContent,
+  XiaohongshuPrintDocument,
+  XiaohongshuPrintContent,
 } from '../../types';
 import { prinClientInfos } from '../../utils/prinClientInfos';
 
@@ -261,9 +263,8 @@ class PrintService {
               name: sender.name,
               mobile: sender.mobile,
               phone: sender.phone,
-              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${
-                sender.address ?? ''
-              }`,
+              address: `${sender.province ?? ''}${sender.city ?? ''}${sender.district ?? ''}${sender.street ?? ''}${sender.address ?? ''
+                }`,
             };
             content.addData = content.addData || {};
             content.addData.sender = _sender;
@@ -300,16 +301,16 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                      name: sender.name,
-                      mobile: sender.mobile,
-                      phone: sender.phone,
-                      address: {
-                        province: sender.province,
-                        city: sender.city,
-                        district: sender.district,
-                        detail: `${sender.street ?? ''}${sender.address ?? ''}`,
-                      },
-                    }
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                    address: {
+                      province: sender.province,
+                      city: sender.city,
+                      district: sender.district,
+                      detail: `${sender.street ?? ''}${sender.address ?? ''}`,
+                    },
+                  }
                   : addData.sender,
               },
               ...extraProperties,
@@ -357,18 +358,18 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                      address: {
-                        provinceName: sender.province,
-                        cityName: sender.city,
-                        districtName: sender.district,
-                        streetName: sender.street,
-                        detailAddress: sender.address,
-                      },
-                      contact: {
-                        name: sender.name,
-                        mobile: sender.mobile,
-                      },
-                    }
+                    address: {
+                      provinceName: sender.province,
+                      cityName: sender.city,
+                      districtName: sender.district,
+                      streetName: sender.street,
+                      detailAddress: sender.address,
+                    },
+                    contact: {
+                      name: sender.name,
+                      mobile: sender.mobile,
+                    },
+                  }
                   : addData.senderInfo,
               },
               ...extraProperties,
@@ -416,17 +417,17 @@ class PrintService {
                 ...addData,
                 sender: sender
                   ? {
-                      address: {
-                        province: sender.province,
-                        city: sender.city,
-                        district: sender.district,
-                        town: sender.street,
-                        detail: sender.address,
-                      },
-                      name: sender.name,
-                      mobile: sender.mobile,
-                      phone: sender.phone,
-                    }
+                    address: {
+                      province: sender.province,
+                      city: sender.city,
+                      district: sender.district,
+                      town: sender.street,
+                      detail: sender.address,
+                    },
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                  }
                   : addData.sender,
               },
               ...extraProperties,
@@ -474,18 +475,18 @@ class PrintService {
                 ...addData,
                 senderInfo: sender
                   ? {
-                      address: {
-                        provinceName: sender.province,
-                        cityName: sender.city,
-                        districtName: sender.district,
-                        streetName: sender.street,
-                        detailAddress: sender.address,
-                      },
-                      contact: {
-                        name: sender.name,
-                        mobile: sender.mobile,
-                      },
-                    }
+                    address: {
+                      provinceName: sender.province,
+                      cityName: sender.city,
+                      districtName: sender.district,
+                      streetName: sender.street,
+                      detailAddress: sender.address,
+                    },
+                    contact: {
+                      name: sender.name,
+                      mobile: sender.mobile,
+                    },
+                  }
                   : addData.senderInfo,
               },
               ...extraProperties,
@@ -499,6 +500,62 @@ class PrintService {
           }
           _documents.push({
             ksOrderFlag: true,
+            documentID: documentID,
+            contents: contents,
+            ...rest,
+          });
+        }
+        return _documents;
+      }
+      case 'xiaohongshu': {
+        const _documents: XiaohongshuPrintDocument[] = [];
+        for (const doc of documents) {
+          if (!this.isWaybillDocument(doc)) {
+            _documents.push(doc as any);
+            continue;
+          }
+          const { documentID, sender, standardArea, customArea, ...rest } = doc;
+          const contents: XiaohongshuPrintDocument['contents'] = [];
+          if (standardArea) {
+            const {
+              templateURL,
+              encryptedData,
+              data,
+              addData = {},
+              extraProperties = {},
+              ...rest
+            } = standardArea;
+            const content: XiaohongshuPrintContent = {
+              templateURL,
+              encryptedData,
+              data,
+              addData: {
+                ...addData,
+                sender: sender
+                  ? {
+                    name: sender.name,
+                    mobile: sender.mobile,
+                    phone: sender.phone,
+                    address: {
+                      province: `${sender.province ?? ''}`,
+                      city: `${sender.city ?? ''}`,
+                      district: `${sender.district ?? ''}`,
+                      town: `${sender.street ?? ''}`,
+                      detail: `${sender.address ?? ''}`,
+                    },
+                  }
+                  : addData.sender,
+              },
+              ...extraProperties,
+              ...rest,
+            };
+            contents.push(content);
+          }
+          if (customArea) {
+            const { templateURL, data, ...rest } = customArea;
+            contents.push({ templateURL, data, ...rest });
+          }
+          _documents.push({
             documentID: documentID,
             contents: contents,
             ...rest,

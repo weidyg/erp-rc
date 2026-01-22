@@ -161,13 +161,6 @@
             "templateURL": "https://s1-11586.kwimgs.com/kos/nlav11586/EBST-EBSTO6.xml",
             "signature": "19d6f7759487e556ddcdd3d499af087080403277b7deed1a951cc3d9a93c42a7e22ccba94ff609976c5d3ceb069b641f541bc9906098438d362cae002dfd823a8654b2b4f655e96317d7f60eef1372bb983a4e3174cc8d321668c49068071eaea873071ed683dd24810e51afc0bc925b7a2445fdbc2034cdffb12cb4719ca6b7",
             "encryptedData": "rU904rj6UH2oqfSUb43+Z+XlOkZaULeerkScS5xbmfjZC78uvsMTa3g6l33hRAz/srsk0TObjJaJI5n4tAPV1uv7szIPQGPDhwD6MK+zvTVIfuQCMC8p+cUB5S4FmqDhNE45LRVAlaoaI5YK8QmWK1WorhwnPxOFH4Ws/ApobtzDLDJaW6uu1AMEdAejEhRTWL3B1fRhhcDxc3gX+DZF9jJUB++fb9JZqmocWRu0Fvi/b1BokQx7Xt/N+FpJVRI0//NNUQ9b/W4tqGFIbf2IM/Ez1S5hBru5gKGdFzs99ZgCKqtWa0DnOzrZDXroU1mhurtlulE8QbipInu63fkIwn3h9ZSK0sMyV5Jrk5x3MIJDHeW9pc/Tw4TnKTAU134jl+GbbpYysa0+jBARWRjombeKIFSVfp/zgp15jClClUU1Nz4alTi22LimY2qteQRG6G/rCHiYxPoBRdrtqZZxNSdnKG5yjSdtA2CEL1DJNg1QkFVSSsOuqcHLdrKl6oMR+aUN6wM3GQikmKSU/CH4hWCCXxFaJXvBYoSxZ63GrM/d+l6D4+9+rCxHJoEVsa2E1TMHLUOnN6CweSM+45lcBK19bbCUJDyky6nb1NbxrZGYhmfkrNzE2GN+Cz4iTAgxJlQxd1gVvS4v5nB7qNfb0Uhy9NTopdumxOS7NXFFg3RFdBfAJ0nLGnxECUvUihBC3pwsLGimrUnIF4174m6J6Ga6cQE+Pp1LXgtKf5zWJdWHkm2vQhazcAsQC8JJZFb1ESp1vIAvpy0d0YmGrLLzxWNciHlOa7vguFCVF3UbTFe8r1Mxyym9rqNrZDXWRtBija9yeliMERVFuOTRjlc0PVAzveexQmuD4ESTzMZPtbO0jos1EITKhHcV35Na7E4I7bEe3L2u5yuFuzDA5cc8OA8v761+xOI70bGXUwvFO2kCCiUFEzI9ksLIDTtydBTA94lf4MYH6m0ziRmAhAgcwm5QJFd2G4JzpFIK4+dLuEZamrYUcnHmWzDIg+HYIXh6g3S2maFU7dUtwYoerptOTiVg8FxRlUTx30NDTgjm7ll8vEJXHj7yd/gAO3Vm9P54OSMv8w+pzX3gtCkvthrkjlToT1jMRNJyuJAeSBf5jruzYLS68inlSE/ehT10zhaiBvaCqojZZ2Ux0JQGhbR/nQ==",
-            "data": {
-              "TradeNo": "202504241355126332",
-              "TotalQuantity": "1",
-              "TotalWeight": "0.32",
-              "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
-              "LogisticsWatermark": "圆通"
-            },
             "addData": {
               "senderInfo": {
                 "contact": {
@@ -193,6 +186,52 @@
               "ProductInfo": "【闪】 B322/614直筒 614黑色-直筒/M (1)",
               "LogisticsWatermark": "圆通"
             }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "xiaohongshu",
+    "documents": [
+      {
+        "documentID": "10000001",
+        "contents": [
+          {
+            "encryptedData": "AES:lAEDvYErKEGqqxFvrYPdeR/aP5U0LhMPc53NS3LM961AWFvsOryFJa+2riipshZYwRToDSrxV68oExP13M+x72CRbv5cJTk3aXWRSehmNc4Csq++JlLQ5UkpdT5/JTTk2VrFje6V1tdmmKt5y1stULjdQBBJ2Gwd7hWZi4xoG3xfFZy5kk4cXWpgW/NmxP5W8ARvh7P3CTeaTjUFg2RM0aCYF8qO/5XyUGEZoxHBZcpG+O+j0DlO410+Oo6LynA4jmrTqGYTmvOucj3swkaADdiLvTFOl3rc443B1BhAGhJanxhU73QVBUyCS9C67nd7dRt6fpaz1ZWQYr6LpAINJsC06+6L08+naLRNQ08Hw331qfNzRL4qqVUNLfYwJZVXPuVidHF8FzgK41HWuNG1Lk3lGDTXNBhz6wgTUn/vzo3pdvzmm/rchL5NM3Vo8oVKY57L+PQu0gRqyv527pDWnnx8xyuRKX6IrdlOvlU19t5YDlbeEKK9inRJYhp0Me5xYs4c42drG/vGOfsSSFmDPYQ/GwXft6aDM8f3FjQNm0f2Hy8R2PY8HZHFADproDSItK65QW18S1Dw+t66+8uYMMyl6iQXPJIpTc/4R2zjWAcaq8nlpVIKZnNSHz/rXu1n0iSEiNyDIrt5YJnVm2GNF9waRHTkJWDCh1Oe13G65VpxVBD/SslKosUauH9F5GbcDbWPargOMI38vNAZvOb6Jbon++qIR1hH+QVtNBMZyaSkGhz1uXWTIptqxs8hKUIdliyhDIuMeoNbkBwdO0/WpehithWHTBnGr5almAn3cDLVR0V5nIsTyddSjl2jrgkYNQOR1OlL3y+gGvokA7w2SpcrrDFnaCY5rqEtajoClxksKM3oSACzW+3YigdUWlEVF7+4iGKKc2ZvMFD7iYvZn3p9UCL5dIBKPZshGGBcKtfRl2Kkl1v9Yjk55wYp7GjI5k5+BynoSLm5DMkwvwgfE3HC3RAlXB61vCgk4SqUJsIll6odJ4pUNQXDXxgYRoL+SIa0MeDDwvnxAX7uLkLB/U8cL34gpdXCvOIVDsuOy4AFjivtMtVXt9/VYRJLHNwuyfSiM6Ghh4rAbIFb8mf7BM56Oso4n8UTuDGcr5dUtsFxWXNvUAAFyJwWCiPv+UQQQSG+Bei6X1QqNWfRK7H2qMeG4IrXYJEUjH+jnhGJxowgCp5UFQCOSR2r1yyzsq+YM0pZkUnikn/IMV3GlSpE3yeDI5WrI7F5DACHGc+8n87ZJof7CPcJLWZspFy9gAyCkSplXZjkyQBCtfwAb7NvsBpEzY2RlZ4/1ohpVQWZQ0Wkd+TLW68qW6uNuG4ek6d7OZeyyTjK8W/ZzD2Ow3vxNlycvuNk5LnJkeenUHHpyJ8BT9uhn5ZVzHdta5dTo04W8pfl2lAEXq9Nu44lI5t9SWkxtSIfQ2qLQz0ZZ5/N6+8eA2WufU+rh9hpUvs+Rhj3ngPCNJSxb74IzCB2ygRY6+TDs/7b07cuowqPLNJdl1/pVf8kkpuNX0qOqvH6QMvr1vIqoLKG8zOEad7txkDTCYuSP/52C2akzbVJH9L+rdF226MphPY9GMInLB8yJiuW5f5bUs9UpOAGstmo3JAJarj5p6jdmX87Z294CvgjoXyU+ZIBPJmdb1/ckPorX2vPb7KzNxJ2McpUQwMFQ1YUYt81DYugGiFPgMpmqDVVPpG+eNHJChQRT5A6v+8ho6O7IucWHf9AS5Wrhxc7YIBQWDnScNQiecORXpEu0nZnEZK9IOrlABO+msEGLS3dVBLgnenttB8l7DDDJ+irslcbRSHVKKAlxdO/h7TjK02oE9PRcMi4vmPGfAu19ytfcpo5TY/csYJBKbF7HX9mlZypGaVAWuFf2aa/W6yAUu7Dkdd5eLp6cEuqYh8xSUR4OdonGWjNun6DMD0FQLhQm0/Q1RnJI0lP8p4bz1fEq/AcpE5z3t9d3ppVeluYP109jb128tCCGHTYHiatVKcIm66Sd4sPSim8t9R4DE/Rtss5iRctnFhT69G4VAtT0J/y3Umn",
+            "ver": "waybill_print_xiaohongshu_secret",
+            "templateURL": "https://cloudprint.xiaohongshu.com/template/standard/15/1",
+            "addData": {
+              "sender": {
+                "name": "发货组(发*组)",
+                "mobile": "18159591228",
+                "address": {
+                  "province": "福建省",
+                  "city": "泉州市",
+                  "district": "石狮市",
+                  "town": "灵秀镇",
+                  "detail": "地址不重要"
+                }
+              }
+            }
+          },
+          {
+            "data": {
+              "item": [
+                "iphone14 红色 256G/1",
+                "iphone14 黑色 256G/1"
+              ],
+              "order": [
+                "P680942792256239451"
+              ],
+              "buyerMemo": [
+                "买家：打包注意点,尽快送达"
+              ],
+              "sellerMemo": [
+                "卖家：请及时签收"
+              ]
+            },
+            "templateURL": "https://cloudprint.xiaohongshu.com/template/standard/7/2"
           }
         ]
       }
