@@ -131,7 +131,19 @@ export type CainiaoPrintContent =
     encryptedData?: string;
     signature?: string;
     templateURL?: string;
-    addData?: { [k: string]: any };
+    addData?: {
+      sender?: {
+        name?: string;
+        mobile?: string;
+        address?: {
+          province?: string;
+          city?: string;
+          district?: string;
+          detail?: string;
+        }
+      },
+      [k: string]: any
+    };
     ver?: string;
   }
   | {
@@ -411,7 +423,7 @@ export type XiaohongshuPrintContent =
     ver?: string;
     addData?: {
       sender?: {
-        address: {
+        address?: {
           province?: string;
           city?: string;
           district?: string;
